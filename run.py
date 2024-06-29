@@ -110,13 +110,12 @@ for username in shadow_dict:
     for password in passwords:
         password = password.strip()
         if crypt.crypt(password, hashed_password) == hashed_password:
-            print(f"{g}[+] {w} Password found for username: {username}, Password is: {password}{r}")
+            print(f"{g}[+] {w}Password found for username: {username}, Password is: {password}{r}")
             cracked_users.append((username, password))
             cracked_count += 1
             break
 
 print(f"{g}[+] {w}Number of users cracked: {cracked_count}{r}")
-
+print("-" * 20)
 for username, password in cracked_users:
-    print(f"    {g}[+] {w}Username: {username}, Password: {password}{r}")
-    
+    print(f"{g}[+] {w}Username: {username}, Password: {password}{r}")
