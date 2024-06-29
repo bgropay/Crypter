@@ -16,24 +16,24 @@ bm = colorama.Back.LIGHTRED_EX   # background merah
 file_passwd = "/etc/passwd"
 file_shadow = "/etc/shadow"
 
-print(f"[*]  Mengecek file '{file_passwd}'...")
+print(f"{b}[*] {p}Mengecek file '{file_passwd}'...{r}")
 time.sleep(3)
 
 if os.path.exists(file_passwd):
-    print(f"[+] File '{file_passwd}' ditemukan.")
-else
+    print(f"{h}[+] {p}File '{file_passwd}' ditemukan.{r}")
+else:
     time.sleep(2)
-    print(f"[+] File '{file_passwd}' tidak ditemukan.")
+    print(f"{m}[-] {p}File '{file_passwd}' tidak ditemukan.{r}")
     exit(1)
 
-print(f"[*]  Mengecek file '{file_shadow}'...")
+print(f"{b}[*] {p}Mengecek file '{file_shadow}'...{r}")
 time.sleep(3)
 
-if os.path.exists(file_shadoe):
-    print(f"[+] File '{file_shadow}' ditemukan.")
+if os.path.exists(file_shadow):
+    print(f"{h}[+] {p}File '{file_shadow}' ditemukan.{r}")
 else
     time.sleep(2)
-    print(f"[+] File '{file_shadow}' tidak ditemukan.")
+    print(f"{m}[-] {p}File '{file_shadow}' tidak ditemukan.{r}")
     exit(1)
 
 try:
