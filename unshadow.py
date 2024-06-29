@@ -106,5 +106,9 @@ with open(file_output, 'w') as output:
                 bagian_passwd[6]   # shell
             ])
             output.write(gabungan + '\n')
-
-print(f"{h}[+] {p}File gabungan berhasil dibuat: {file_output}{r}")
+print(f"{b}[*] {p}Mengcrack kata sandi Linux menggunakan John The Ripper...{r}")
+time.sleep(3)
+os.system(f"john --wordlist={wordlist} {file_output}")
+print(f"{p}[{c}INFO{p}] Proses cracking selesai.{r}")
+print(f"{p}[{c}INFO{p}] Ketikkan 'john --show [nama file output]' untuk melihat hasil proses cracking.{r}")
+exit(0)
