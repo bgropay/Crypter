@@ -52,6 +52,14 @@ print(f"""
 {b}        https://github.com/bgropay/crypter        {r}
 """)
 
+while True:
+        input_wordlist = input(f"{c}[»] {w}Enter the path to the Wordlist file: ")
+
+        if not os.path.isfile(input_wordlist):
+            print(f"{m}[-] {w}Wordlist file '{input_wordlist}' not found.{r}")
+            continue
+        break
+
 # Read /etc/passwd file
 with open(passwd_file, 'r') as passwd:
     for line in passwd:
@@ -88,15 +96,9 @@ with open(output_file, 'w') as output:
             ])
             output.write(combined + '\n')
 
-            while True:
-                wordlist_path = input(f"{c}[»] {w}Enter the path to the Wordlist file: ")
+            wordlist_path = input_wordlist
 
-                if not os.path.isfile(wordlist_path):
-                    print(f"{m}[-] {w}Wordlist file '{wordlist_file}' not found.{r}")
-                    continue
-                break
-
-            with open(wordlist_path, 'r', encoding='latin-1') as wordlist_file:
+            with open(wordlist_path, "r", encoding="latin-1", errors="ignore") as wordlist_file:
                 passwords = wordlist_file.readlines()
 
             hashed_password = shadow_parts[1]
