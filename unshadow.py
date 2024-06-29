@@ -1,61 +1,64 @@
-# Program : Menggabungkan informasi dari file /etc/passwd dan /etc/shadow pada sistem operasi Linux.
-# Pembuat : BgRopay
-# Github  : https://github.com/bgropay/Unshadow
-# Lisensi : MIT
-
-# Informasi
-# ---------
-# Program ini menggabungkan informasi dari file /etc/passwd dan /etc/shadow
-# pada sistem operasi Linux. Ini mencakup username dan hash password,
-# yang dapat di-crack menggunakan alat seperti John the Ripper atau Hashcat.
-#
-# [ Crack menggunakan John The Ripper ]
-# Command: john --wordlist=/path/to/wordlist.txt [file_unshadow]
-
 import os
+import crypt  # Import the crypt module from Python
+from colorama import Fore
 
-# Path file passwd dan shadow
-file_passwd = "/etc/passwd"
-file_shadow = "/etc/shadow"
-file_output = "hash.txt"
+g = Fore.LIGHTGREEN_EX
+p = Fore.LIGHTWHITE_EX
+r = Fore.RESET
 
-dict_passwd = {}
-dict_shadow = {}
+# Paths to passwd and shadow files
+passwd_file = "/etc/passwd"
+shadow_file = "/etc/shadow"
+output_file = "hash.txt"
 
-# Membaca file /etc/passwd
-with open(file_passwd, 'r') as passwd:
-    for baris in passwd:
-        bagian = baris.strip().split(':')
-        if len(bagian) > 1:
-            username = bagian[0]
-            gecos = bagian[4]  # Mengambil bagian GECOS
-            if 'user' in gecos.lower():  # Memeriksa keberadaan 'user' dalam GECOS
-                dict_passwd[username] = bagian
+passwd_dict = {}
+shadow_dict = {}
 
-# Membaca file /etc/shadow
-with open(file_shadow, 'r') as shadow:
-    for baris in shadow:
-        bagian = baris.strip().split(':')
-        if len(bagian) > 1:
-            username = bagian[0]
-            if username in dict_passwd:
-                dict_shadow[username] = bagian
+# Read /etc/passwd file
+with open(passwd_file, 'r') as passwd:
+    for line in passwd:
+        parts = line.strip().split(':')
+        if len(parts) > 1:
+            username = parts[0]
+            gecos = parts[4]  # Extract GECOS field
+            if 'user' in gecos.lower():  # Check for 'user' in GECOS
+                passwd_dict[username] = parts
 
-# Menggabungkan informasi untuk pengguna yang ada di kedua file
-with open(file_output, 'w') as output:
-    for username in dict_passwd:
-        if username in dict_shadow:
-            bagian_passwd = dict_passwd[username]
-            bagian_shadow = dict_shadow[username]
-            gabungan = ':'.join([
-                bagian_passwd[0],  # nama pengguna
-                bagian_shadow[1],  # hash kata sandi
-                bagian_passwd[2],  # UID
-                bagian_passwd[3],  # GID
-                bagian_passwd[4],  # GECOS
-                bagian_passwd[5],  # direktori
-                bagian_passwd[6]   # shell
+# Read /etc/shadow file
+with open(shadow_file, 'r') as shadow:
+    for line in shadow:
+        parts = line.strip().split(':')
+        if len(parts) > 1:
+            username = parts[0]
+            if username in passwd_dict:
+                shadow_dict[username] = parts
+
+# Combine information for users present in both files
+with open(output_file, 'w') as output:
+    for username in passwd_dict:
+        if username in shadow_dict:
+            passwd_parts = passwd_dict[username]
+            shadow_parts = shadow_dict[username]
+            combined = ':'.join([
+                passwd_parts[0],  # username
+                shadow_parts[1],  # hashed password
+                passwd_parts[2],  # UID
+                passwd_parts[3],  # GID
+                passwd_parts[4],  # GECOS
+                passwd_parts[5],  # home directory
+                passwd_parts[6]   # shell
             ])
-            output.write(gabungan + '\n')
-# Wordlist yang digunakan untuk meng-crack kata sandi Linux 
-wordlist="/usr/share/wordlists/rockyou.txt"
+            output.write(combined + '\n')
+
+            # Attempt to crack password using rockyou.txt wordlist
+            wordlist_path = "/usr/share/wordlists/rockyou.txt"
+            
+            with open(wordlist_path, 'r', encoding='latin-1') as wordlist_file:
+                passwords = wordlist_file.readlines()
+
+            hashed_password = shadow_parts[1]
+            for password in passwords:
+                password = password.strip()
+                if crypt.crypt(password, hashed_password) == hashed_password:
+                    print(f"{h}[+] {p}Username: {username}, Password: {password}{r}")
+                    break
