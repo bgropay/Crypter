@@ -14,9 +14,9 @@ import colorama
 g = colorama.Fore.LIGHTGREEN_EX # Green
 b = colorama.Fore.LIGHTBLUE_EX  # Blue
 c = colorama.Fore.LIGHTCYAN_EX  # Cyan
-w = colorama.Fore.LIGHTWHITE_EX # White
+w = colorama.Fore.LIGHTWHITE_EX # White 
 m = colorama.Fore.LIGHTRED_EX   # Red
-r = colorama.Fore.RESET         # Reset
+r = colorama.Fore.RESET         # Reset 
 
 # Check if the operating system is Linux
 if platform.system() != 'Linux':
@@ -29,13 +29,13 @@ passwd_file = "/etc/passwd"
 if not os.path.isfile(passwd_file):
     print(f"{m}[-] {w}Passwd file '{passwd_file}' not found.{r}")
     exit(1)
-
+    
 shadow_file = "/etc/shadow"
 
 if not os.path.isfile(shadow_file):
     print(f"{m}[-] {w}Shadow file '{shadow_file}' not found.{r}")
     exit(1)
-
+    
 output_file = "hash.txt"
 
 passwd_dict = {}
@@ -51,6 +51,14 @@ print(f"""
 {w}         Crack Linux Password with Python         {r}
 {b}        https://github.com/bgropay/crypter        {r}
 """)
+
+while True:
+    input_wordlist = input(f"{c}[»] {w}Enter the path to the Wordlist file: ")
+
+    if not os.path.isfile(input_wordlist):
+        print(f"{m}[-] {w}Wordlist file '{input_wordlist}' not found.{r}")
+        continue
+    break
 
 # Read /etc/passwd file
 with open(passwd_file, 'r') as passwd:
@@ -71,17 +79,6 @@ with open(shadow_file, 'r') as shadow:
             if username in passwd_dict:
                 shadow_dict[username] = parts
 
-# Print the number of users found
-print(f"{c}[»] {w}Jumlah user yang ditemukan: {len(passwd_dict)}{r}")
-
-while True:
-    input_wordlist = input(f"{c}[»] {w}Enter the path to the Wordlist file: ")
-
-    if not os.path.isfile(input_wordlist):
-        print(f"{m}[-] {w}Wordlist file '{input_wordlist}' not found.{r}")
-        continue
-    break
-
 # Combine information for users present in both files
 with open(output_file, 'w') as output:
     for username in passwd_dict:
@@ -99,15 +96,25 @@ with open(output_file, 'w') as output:
             ])
             output.write(combined + '\n')
 
-            wordlist_path = input_wordlist
+cracked_count = 0
+cracked_users = []
 
-            with open(wordlist_path, "r", encoding="latin-1", errors="ignore") as wordlist_file:
-                passwords = wordlist_file.readlines()
+wordlist_path = input_wordlist
+with open(wordlist_path, "r", encoding="latin-1", errors="ignore") as wordlist_file:
+    passwords = wordlist_file.readlines()
 
-            hashed_password = shadow_parts[1]
-            for password in passwords:
-                password = password.strip()
-                if crypt.crypt(password, hashed_password) == hashed_password:
-                    print(f"{g}[+] {w}Username: {username}, Password: {password}{r}")
-                    break
-                    
+for username in shadow_dict:
+    hashed_password = shadow_dict[username][1]
+    for password in passwords:
+        password = password.strip()
+        if crypt.crypt(password, hashed_password) == hashed_password:
+            print(f"{g}[+] {w}Username: {username}, Password: {password}{r}")
+            cracked_users.append((username, password))
+            cracked_count += 1
+            break
+
+print(f"{g}[+] {w}Number of users cracked: {cracked_count}{r}")
+
+for username, password in cracked_users:
+    print(f"{g}[+] {w}Username: {username}, Password: {password}{r}")
+    
