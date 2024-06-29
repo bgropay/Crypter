@@ -41,6 +41,8 @@ output_file = "hash.txt"
 passwd_dict = {}
 shadow_dict = {}
 
+os.system("clear")
+
 print(f"""
 {m} ___    ___    _     _  ___   _____  ___    ___   {r}
 {m}(  _`\ |  _`\ ( )   ( )(  _`\(_   _)(  _`\ |  _`\ {r}
