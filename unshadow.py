@@ -3,6 +3,12 @@
 # Github  : https://github.com/bgropay/Unshadow
 # Lisensi : MIT
 
+# Informasi
+#
+# Program ini menggabungkan informasi dari file /etc/passwd dan /etc/shadow
+# pada sistem operasi Linux. Ini mencakup username dan hash password,
+# yang dapat di-crack menggunakan alat seperti John the Ripper atau Hashcat.
+
 import os
 import time
 
