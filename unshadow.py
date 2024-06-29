@@ -32,10 +32,10 @@ while True:
 
 # Mengubah output warna teks
 m = colorama.Fore.LIGHTRED_EX    # merah
-h = colorama.Fore.GREEN
-ht = colorama.Fore.LIGHTGREEN_EX  # hijau
-b = colorama.Fore.LIGHTBLUE_EX   # biru
-c = colorama.Fore.LIGHTCYAN_EX   # cyan
+h = colorama.Fore.GREEN # hijau 
+ht = colorama.Fore.LIGHTGREEN_EX  # hijau terang 
+c = colorama.Fore.CYAN  # cyan terang 
+ct = colorama.Fore.LIGHTCYAN_EX   # cyan terang 
 p = colorama.Fore.LIGHTWHITE_EX  # putih
 r = colorama.Fore.RESET    # reset
 
@@ -50,7 +50,7 @@ print(f"{p}[{c}{fw}{p}] [{h}INFO{p}] {r}Mengecek file '{file_passwd}'...{r}")
 time.sleep(3)
 
 if os.path.isfile(file_passwd):
-    print(f"{p}[{c}{fw}{p}] [{ht}INFO{p}] File '{file_passwd}' ditemukan.{r}")
+    print(f"{p}[{ct}{fw}{p}] [{ht}INFO{p}] File '{file_passwd}' ditemukan.{r}")
 else:
     time.sleep(2)
     print(f"{m}[-] {p}File '{file_passwd}' tidak ditemukan.{r}")
