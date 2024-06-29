@@ -107,13 +107,17 @@ for username in shadow_dict:
     hashed_password = shadow_dict[username][1]
     print(f"{g}[+] {w}Found username: {shadow_dict[username][0]}{r}")
     print(f"{b}[*] {w}Cracking the password for username: {shadow_dict[username][0]}{r}")
+    password_found = False
     for password in passwords:
         password = password.strip()
         if crypt.crypt(password, hashed_password) == hashed_password:
             print(f"{g}[+] {w}Password found for username: {username}, Password is: {password}{r}")
             cracked_users.append((username, password))
             cracked_count += 1
+            password_found = True
             break
+    if not password_found:
+        print(f"{m}[-] {w}Password not found for username: {username}{r}")
 
 print(f"{g}[+] {w}Number of users cracked: {cracked_count}{r}")
 for username, password in cracked_users:
