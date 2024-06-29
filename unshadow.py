@@ -45,11 +45,11 @@ fw = waktu.strftime("%H:%M:%S")
 file_passwd = "/etc/passwd"
 file_shadow = "/etc/shadow"
 
-print(f"{p}[{c}{fw}{p}] [{h}INFO{p}] Mengecek file '{file_passwd}'...{r}")
+print(f"{p}[{c}{fw}{p}] [{h}INFO{p}] {r}Mengecek file '{file_passwd}'...{r}")
 time.sleep(3)
 
 if os.path.isfile(file_passwd):
-    print(f"{h}[+] {p}File '{file_passwd}' ditemukan.{r}")
+    print(f"{p}[{c}{fw}{p}] [{h}INFO{p}] File '{file_passwd}' ditemukan.{r}")
 else:
     time.sleep(2)
     print(f"{m}[-] {p}File '{file_passwd}' tidak ditemukan.{r}")
