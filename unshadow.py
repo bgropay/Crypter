@@ -8,6 +8,12 @@
 # Program ini menggabungkan informasi dari file /etc/passwd dan /etc/shadow
 # pada sistem operasi Linux. Ini mencakup username dan hash password,
 # yang dapat di-crack menggunakan alat seperti John the Ripper atau Hashcat.
+#
+# 1. Crack menggunakan John The Ripper
+# command: john_command = john --format=sha512crypt --wordlist=/path/to/wordlist.txt [file_unshadow]
+#
+# 2. Crack menggunakan Hashcat
+# command: hashcat -a 0 -m 1800 [file_unshadow] [wordlist]
 
 import os
 import time
