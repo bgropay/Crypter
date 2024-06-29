@@ -119,6 +119,6 @@ for username in shadow_dict:
     if not password_found:
         print(f"{m}[-] {w}Password not found for username: {username}{r}")
 
-print(f"{g}[+] {w}Number of users cracked: {cracked_count}{r}")
+print(f"{g}\n[+] {w}Number of users cracked: {cracked_count}{r}")
 for username, password in cracked_users:
     print(f"{g}[+] {w}Username: {username}, Password: {password}{r}")
