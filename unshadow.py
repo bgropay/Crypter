@@ -45,7 +45,7 @@ fw = waktu.strftime("%H:%M:%S")
 file_passwd = "/etc/passwd"
 file_shadow = "/etc/shadow"
 
-print(f"{p}[{c}{fw}{p}] Mengecek file '{file_passwd}'...{r}")
+print(f"{p}[{c}{fw}{p}] [{h}INFO{p}] Mengecek file '{file_passwd}'...{r}")
 time.sleep(3)
 
 if os.path.isfile(file_passwd):
