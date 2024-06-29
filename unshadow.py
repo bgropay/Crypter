@@ -3,9 +3,10 @@
 # Github  : https://github.com/bgropay/Unshadow
 # Lisensi : MIT
 
-while True:
-    import os
-    import time
+import os
+import time
+
+while True:    
     try:
         import colorama
     except ImportError:
