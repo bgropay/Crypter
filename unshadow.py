@@ -59,7 +59,3 @@ with open(file_output, 'w') as output:
             output.write(gabungan + '\n')
 # Wordlist yang digunakan untuk meng-crack kata sandi Linux 
 wordlist="/usr/share/wordlists/rockyou.txt"
-# Meng-crack kata sandi Linux menggunakan Jihn The Ripper
-os.system(f"john --wordlist={wordlist} {file_output}")
-os.system(f"john --show {file_output}")
-exit(0)
