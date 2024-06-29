@@ -13,68 +13,11 @@
 # Command: john --wordlist=/path/to/wordlist.txt [file_unshadow]
 
 import os
-import time
-import datetime
 
-while True:    
-    try:
-        import colorama
-    except ImportError:
-        print("Error: Modul colorama belum terinstal.")
-        time.sleep(1)
-        print("[*] Menginstal modul colorama...")
-        time.sleep(3)
-        os.system("python3 -m venv modules")
-        os.system("source modules/bin/activate")
-        os.system("pip3 install colorama")
-        continue
-    break
-
-# Mengubah output warna teks
-m = colorama.Fore.LIGHTRED_EX    # merah
-h = colorama.Fore.GREEN # hijau 
-ht = colorama.Fore.LIGHTGREEN_EX  # hijau terang 
-c = colorama.Fore.CYAN  # cyan terang 
-ct = colorama.Fore.LIGHTCYAN_EX   # cyan terang 
-p = colorama.Fore.WHITE  # putih
-pt = colorama.Fore.LIGHTWHITE_EX  # putih terang 
-r = colorama.Style.RESET_ALL   # reset
-
-while True:
-    waktu = datetime.datetime.now()
-    fw = waktu.strftime("%H:%M:%S")
-
-    # Path file passwd dan shadow
-    file_passwd = "/etc/passwd"
-    file_shadow = "/etc/shadow"
-
-    print(f"{p}[{c}{fw}{p}] [{h}INFO{p}] {r}Mengecek file '{file_passwd}'...{r}")
-    time.sleep(3)
-    
-    if os.path.isfile(file_passwd):
-        print(f"{p}[{ct}{fw}{p}] [{ht}INFO{p}] File '{file_passwd}' ditemukan.{r}")
-        break 
-    else:
-        time.sleep(2)
-        print(f"{m}[-] {p}File '{file_passwd}' tidak ditemukan.{r}")
-        exit(1)
-
-    print(f"{b}[*] {p}Mengecek file '{file_shadow}'...{r}")
-    time.sleep(3)
-
-if os.path.isfile(file_shadow):
-    print(f"{h}[+] {p}File '{file_shadow}' ditemukan.{r}")
-else:
-    time.sleep(2)
-    print(f"{m}[-] {p}File '{file_shadow}' tidak ditemukan.{r}")
-    exit(1)
-
-try:
-    file_output = input(f"{c}[»] {p}Masukkan nama file output: ")
-except KeyboardInterrupt:
-    print(f"\n{m}[-] {p}Keluar...{k}:({r}")
-    exit(1)
-
+# Path file passwd dan shadow
+file_passwd = "/etc/passwd"
+file_shadow = "/etc/shadow"
+file_output = "hash.txt"
 
 dict_passwd = {}
 dict_shadow = {}
@@ -114,12 +57,9 @@ with open(file_output, 'w') as output:
                 bagian_passwd[6]   # shell
             ])
             output.write(gabungan + '\n')
-print(f"{b}[*] {p}Mengcrack kata sandi Linux menggunakan John The Ripper...{r}")
-time.sleep(3)
 # Wordlist yang digunakan untuk meng-crack kata sandi Linux 
 wordlist="/usr/share/wordlists/rockyou.txt"
 # Meng-crack kata sandi Linux menggunakan Jihn The Ripper
 os.system(f"john --wordlist={wordlist} {file_output}")
-print(f"{p}[{c}INFO{p}] Proses cracking selesai.{r}")
-print(f"{p}[{c}INFO{p}] Ketikkan 'john --show [nama file output]' untuk melihat hasil proses cracking.{r}")
+os.system(f"john --show {file_output}")
 exit(0)
