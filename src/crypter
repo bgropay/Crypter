@@ -39,6 +39,18 @@ output_file = "hash.txt"
 passwd_dict = {}
 shadow_dict = {}
 
+print(f"""
+{b} ___    ___    _     _  ___   _____  ___    ___   {r}
+{b}(  _`\ |  _`\ ( )   ( )(  _`\(_   _)(  _`\ |  _`\ {r}
+{b}| ( (_)| (_) )`\`\_/'/'| |_) ) | |  | (_(_)| (_) ){r}
+{b}| |  _ | ,  /   `\ /'  | ,__/' | |  |  _)_ | ,  / {r}
+{b}| (_( )| |\ \    | |   | |     | |  | (_( )| |\ \ {r}
+{b}(____/'(_) (_)   (_)   (_)     (_)  (____/'(_) (_){r}
+{w}                  Crack Linux Password with Python{r}
+{w}                                 Coded By: BgRopay{r}                                
+{w}                https://github.com/bgropay/crypter{r}
+""")
+
 # Read /etc/passwd file
 with open(passwd_file, 'r') as passwd:
     for line in passwd:
