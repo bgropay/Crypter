@@ -25,11 +25,13 @@ passwd_file = "/etc/passwd"
 
 if not os.path.isfile(passwd_file):
     print(f"{m}[-] {w}Passwd file '{passwd_file}' not found.{r}")
-
+    exit(1)
+    
 shadow_file = "/etc/shadow"
 
 if not os.path.isfile(shadow_file):
     print(f"{m}[-] {w}Shadow file '{shadow_file}' not found.{r}")
+    exit(1)
     
 output_file = "hash.txt"
 
