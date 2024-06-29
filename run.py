@@ -106,7 +106,7 @@ wordlist_path = input_wordlist
 with open(wordlist_path, "r", encoding="latin-1", errors="ignore") as wordlist_file:
     passwords = wordlist_file.readlines()
     password_count = len(passwords)
-    print(f"{g}[+] {w}Number of passwords in the wordlist file '{wordlist_path}': {password_count}{r}")
+    print(f"{b}[*] {w}Number of passwords in the wordlist file '{wordlist_path}': {password_count}{r}")
 
 for username in shadow_dict:
     hashed_password = shadow_dict[username][1]
