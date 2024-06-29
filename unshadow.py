@@ -1,11 +1,13 @@
 import os
 
+# Path file passwd dan shadow
 file_passwd = "/etc/passwd"
 file_shadow = "/etc/shadow"
-file_output = "unshadowed.txt"
+file_output = "unshadowed_user.txt"
 
+# Mengecek keberadaan file passwd dan shadow
 if not os.path.exists(file_passwd) or not os.path.exists(file_shadow):
-    print("File /etc/passwd atau /etc/shadow tidak ada.")
+    print("[-] File /etc/passwd atau /etc/shadow tidak ada.")
 else:
     dict_passwd = {}
     dict_shadow = {}
@@ -15,21 +17,26 @@ else:
         for baris in passwd:
             bagian = baris.strip().split(':')
             if len(bagian) > 1:
-                dict_passwd[bagian[0]] = bagian
+                username = bagian[0]
+                gecos = bagian[4]  # Mengambil bagian GECOS
+                if 'user' in gecos.lower():  # Memeriksa keberadaan 'user' dalam GECOS
+                    dict_passwd[username] = bagian
 
     # Membaca file /etc/shadow
     with open(file_shadow, 'r') as shadow:
         for baris in shadow:
             bagian = baris.strip().split(':')
             if len(bagian) > 1:
-                dict_shadow[bagian[0]] = bagian
+                username = bagian[0]
+                if username in dict_passwd:
+                    dict_shadow[username] = bagian
 
-    # Menggabungkan informasi dan menulis ke file output
+    # Menggabungkan informasi untuk pengguna yang ada di kedua file
     with open(file_output, 'w') as output:
-        for pengguna in dict_passwd:
-            if pengguna in dict_shadow:
-                bagian_passwd = dict_passwd[pengguna]
-                bagian_shadow = dict_shadow[pengguna]
+        for username in dict_passwd:
+            if username in dict_shadow:
+                bagian_passwd = dict_passwd[username]
+                bagian_shadow = dict_shadow[username]
                 gabungan = ':'.join([
                     bagian_passwd[0],  # nama pengguna
                     bagian_shadow[1],  # hash kata sandi
@@ -41,4 +48,4 @@ else:
                 ])
                 output.write(gabungan + '\n')
 
-    # print(f"File gabungan dibuat: {file_output}")
+    print(f"[+] File gabungan berhasil dibuat: {file_output}")
