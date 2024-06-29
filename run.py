@@ -52,14 +52,6 @@ print(f"""
 {b}        https://github.com/bgropay/crypter        {r}
 """)
 
-while True:
-    input_wordlist = input(f"{c}[»] {w}Enter the path to the Wordlist file: ")
-
-    if not os.path.isfile(input_wordlist):
-        print(f"{m}[-] {w}Wordlist file '{input_wordlist}' not found.{r}")
-        continue
-    break
-
 # Read /etc/passwd file
 with open(passwd_file, 'r') as passwd:
     for line in passwd:
@@ -81,6 +73,14 @@ with open(shadow_file, 'r') as shadow:
 
 # Print the number of users found
 print(f"{c}[»] {w}Jumlah user yang ditemukan: {len(passwd_dict)}{r}")
+
+while True:
+    input_wordlist = input(f"{c}[»] {w}Enter the path to the Wordlist file: ")
+
+    if not os.path.isfile(input_wordlist):
+        print(f"{m}[-] {w}Wordlist file '{input_wordlist}' not found.{r}")
+        continue
+    break
 
 # Combine information for users present in both files
 with open(output_file, 'w') as output:
