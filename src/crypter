@@ -11,7 +11,8 @@ import platform
 import colorama
 
 # Colors
-g = colorama.Fore.LIGHTGREEN_EX # Green 
+g = colorama.Fore.LIGHTGREEN_EX # Green
+b = colorama.Fore.LIGHTBLUE_EX  # Blue
 w = colorama.Fore.LIGHTWHITE_EX # White 
 m = colorama.Fore.LIGHTRED_EX   # Red
 r = colorama.Fore.RESET         # Reset 
@@ -47,7 +48,7 @@ print(f"""
 {b}| (_( )| |\ \    | |   | |     | |  | (_( )| |\ \ {r}
 {b}(____/'(_) (_)   (_)   (_)     (_)  (____/'(_) (_){r}
 {w}                  Crack Linux Password with Python{r}
-{w}                                 Coded By: BgRopay{r}                                
+{w}                                 Coded By: BgRopay{r} 
 {w}                https://github.com/bgropay/crypter{r}
 """)
 
