@@ -53,13 +53,14 @@ while True:
     
     if os.path.isfile(file_passwd):
         print(f"{p}[{ct}{fw}{p}] [{ht}INFO{p}] File '{file_passwd}' ditemukan.{r}")
+        break 
     else:
         time.sleep(2)
         print(f"{m}[-] {p}File '{file_passwd}' tidak ditemukan.{r}")
         exit(1)
 
-print(f"{b}[*] {p}Mengecek file '{file_shadow}'...{r}")
-time.sleep(3)
+    print(f"{b}[*] {p}Mengecek file '{file_shadow}'...{r}")
+    time.sleep(3)
 
 if os.path.isfile(file_shadow):
     print(f"{h}[+] {p}File '{file_shadow}' ditemukan.{r}")
