@@ -47,9 +47,8 @@ print(f"""
 {b}| |  _ | ,  /   `\ /'  | ,__/' | |  |  _)_ | ,  / {r}
 {b}| (_( )| |\ \    | |   | |     | |  | (_( )| |\ \ {r}
 {b}(____/'(_) (_)   (_)   (_)     (_)  (____/'(_) (_){r}
-{w}                  Crack Linux Password with Python{r}
-{w}                                 Coded By: BgRopay{r} 
-{w}                https://github.com/bgropay/crypter{r}
+{w}         Crack Linux Password with Python         {r}
+{w}        https://github.com/bgropay/crypter        {r}
 """)
 
 # Read /etc/passwd file
