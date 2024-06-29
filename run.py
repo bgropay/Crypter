@@ -116,6 +116,5 @@ for username in shadow_dict:
             break
 
 print(f"{g}[+] {w}Number of users cracked: {cracked_count}{r}")
-print("-" * 20)
 for username, password in cracked_users:
     print(f"{g}[+] {w}Username: {username}, Password: {password}{r}")
