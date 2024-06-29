@@ -6,12 +6,18 @@
 
 import os
 import crypt 
-from colorama import Fore
+import platform
+import colorama
 
 # Colors
-g = Fore.LIGHTGREEN_EX # Green 
-w = Fore.LIGHTWHITE_EX # White 
-r = Fore.RESET         # Reset 
+g = colorama.Fore.LIGHTGREEN_EX # Green 
+w = colorama.Fore.LIGHTWHITE_EX # White 
+r = colorama.Fore.RESET         # Reset 
+
+# Check if the operating system is Linux
+if platform.system() != 'Linux':
+    print("This script is designed to run only on Linux systems.")
+    sys.exit(1)
 
 # Paths to passwd and shadow files
 passwd_file = "/etc/passwd"
