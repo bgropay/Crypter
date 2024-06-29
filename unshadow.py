@@ -36,7 +36,7 @@ h = colorama.Fore.LIGHTGREEN_EX  # hijau
 b = colorama.Fore.LIGHTBLUE_EX   # biru
 c = colorama.Fore.LIGHTCYAN_EX   # cyan
 p = colorama.Fore.LIGHTWHITE_EX  # putih
-r = colorama.Style.RESET_ALL     # reset
+r = colorama.Fore.RESET    # reset
 
 waktu = datetime.datetime.now()
 fw = waktu.strftime("%H:%M:%S")
