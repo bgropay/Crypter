@@ -36,8 +36,9 @@ h = colorama.Fore.GREEN # hijau
 ht = colorama.Fore.LIGHTGREEN_EX  # hijau terang 
 c = colorama.Fore.CYAN  # cyan terang 
 ct = colorama.Fore.LIGHTCYAN_EX   # cyan terang 
-p = colorama.Fore.LIGHTWHITE_EX  # putih
-r = colorama.Fore.RESET    # reset
+p = colorama.Fore.WHITE  # putih
+pt = colorama.Fore.LIGHTWHITE_EX  # putih terang 
+r = colorama.Style.RESET_ALL   # reset
 
 while True:
     waktu = datetime.datetime.now()
