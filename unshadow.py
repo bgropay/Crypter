@@ -3,9 +3,17 @@
 # Github  : https://github.com/bgropay/Unshadow
 # Lisensi : MIT
 
-import os
-import time
-import colorama
+while True:
+    import os
+    import time
+    try:
+        import colorama
+    except ImportError:
+        os.system("python3 -m venv modules")
+        os.system("source modules/bin/activate")
+        os.system("pip3 install colorama")
+        continue
+    break
 
 # Mengubah output warna teks
 m = colorama.Fore.LIGHTRED_EX    # merah
