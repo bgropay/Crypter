@@ -12,7 +12,7 @@ while True:
     except ImportError:
         print("Error: Modul colorama belum terinstal.")
         time.sleep(1)
-        print("Menginstal modul colorama...")
+        print("[*] Menginstal modul colorama...")
         time.sleep(3)
         os.system("python3 -m venv modules")
         os.system("source modules/bin/activate")
