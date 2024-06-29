@@ -13,6 +13,7 @@ import colorama
 # Colors
 g = colorama.Fore.LIGHTGREEN_EX # Green
 b = colorama.Fore.LIGHTBLUE_EX  # Blue
+c = colorama.Fore.LIGHTCYAN_EX  # Cyan
 w = colorama.Fore.LIGHTWHITE_EX # White 
 m = colorama.Fore.LIGHTRED_EX   # Red
 r = colorama.Fore.RESET         # Reset 
@@ -88,7 +89,7 @@ with open(output_file, 'w') as output:
             output.write(combined + '\n')
 
             # Attempt to crack password using rockyou.txt wordlist
-            wordlist_path = "/usr/share/wordlists/rockyou.txt"
+            wordlist_path = input(f"{c}[»] {w}Enter the path to the Wordlist file: ")
 
             if not os.path.isfile(wordlist_path):
                 print(f"{m}[-] {w}Wordlist file '{wordlist_file}' not found.{r}")
