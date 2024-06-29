@@ -31,7 +31,7 @@ time.sleep(3)
 
 if os.path.exists(file_shadow):
     print(f"{h}[+] {p}File '{file_shadow}' ditemukan.{r}")
-else
+else:
     time.sleep(2)
     print(f"{m}[-] {p}File '{file_shadow}' tidak ditemukan.{r}")
     exit(1)
