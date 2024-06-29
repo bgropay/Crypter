@@ -1,13 +1,29 @@
 import os
+import colorama
+
+# Mengubah output warna teks
+m = colorama.Fore.LIGHTRED_EX    # merah
+h = colorama.Fore.LIGHTGREEN_EX  # hijau
+b = colorama.Fore.LIGHTBLUE_EX   # biru
+k = colorama.Fore.LIGHTYELLOW_EX # kuning
+c = colorama.Fore.LIGHTCYAN_EX   # cyan
+p = colorama.Fore.LIGHTWHITE_EX  # putih
+r = colorama.Style.RESET_ALL     # reset
+bm = colorama.Back.LIGHTRED_EX   # background merah
 
 # Path file passwd dan shadow
 file_passwd = "/etc/passwd"
 file_shadow = "/etc/shadow"
-file_output = "unshadowed_user.txt"
+
+try:
+    file_output = input(f"{c}[»] {p}Masukkan nama file output: ")
+except KeyboardInterrupt:
+    print(f"\n{m}[-] {p}Keluar...{k}:({r}")
+    exit(1)
 
 # Mengecek keberadaan file passwd dan shadow
 if not os.path.exists(file_passwd) or not os.path.exists(file_shadow):
-    print("[-] File /etc/passwd atau /etc/shadow tidak ada.")
+    print(f"{m}[-] {p}File '{file_passwd}' atau '{file_shadow}' tidak ditemukan.{r}")
 else:
     dict_passwd = {}
     dict_shadow = {}
@@ -48,4 +64,4 @@ else:
                 ])
                 output.write(gabungan + '\n')
 
-    print(f"[+] File gabungan berhasil dibuat: {file_output}")
+    print(f"{h}[+] {p}File gabungan berhasil dibuat: {file_output}{r}")
