@@ -1,5 +1,11 @@
+# Title.......: Crypter
+# Description.: Crack Linux Password with Python
+# Author......: BgRopay
+# Usage.......: python3 crypter.py
+# Homepage....: github.com/bgropay/crypter
+
 import os
-import crypt  # Import the crypt module from Python
+import crypt 
 from colorama import Fore
 
 g = Fore.LIGHTGREEN_EX
