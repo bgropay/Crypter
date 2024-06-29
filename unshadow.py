@@ -1,4 +1,5 @@
 import os
+import time
 import colorama
 
 # Mengubah output warna teks
@@ -14,6 +15,26 @@ bm = colorama.Back.LIGHTRED_EX   # background merah
 # Path file passwd dan shadow
 file_passwd = "/etc/passwd"
 file_shadow = "/etc/shadow"
+
+print(f"[*]  Mengecek file '{file_passwd}'...")
+time.sleep(3)
+
+if os.path.exists(file_passwd):
+    print(f"[+] File '{file_passwd}' ditemukan.")
+else
+    time.sleep(2)
+    print(f"[+] File '{file_passwd}' tidak ditemukan.")
+    exit(1)
+
+print(f"[*]  Mengecek file '{file_shadow}'...")
+time.sleep(3)
+
+if os.path.exists(file_shadoe):
+    print(f"[+] File '{file_shadow}' ditemukan.")
+else
+    time.sleep(2)
+    print(f"[+] File '{file_shadow}' tidak ditemukan.")
+    exit(1)
 
 try:
     file_output = input(f"{c}[»] {p}Masukkan nama file output: ")
