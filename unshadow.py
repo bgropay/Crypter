@@ -6,11 +6,9 @@ import colorama
 m = colorama.Fore.LIGHTRED_EX    # merah
 h = colorama.Fore.LIGHTGREEN_EX  # hijau
 b = colorama.Fore.LIGHTBLUE_EX   # biru
-k = colorama.Fore.LIGHTYELLOW_EX # kuning
 c = colorama.Fore.LIGHTCYAN_EX   # cyan
 p = colorama.Fore.LIGHTWHITE_EX  # putih
 r = colorama.Style.RESET_ALL     # reset
-bm = colorama.Back.LIGHTRED_EX   # background merah
 
 # Path file passwd dan shadow
 file_passwd = "/etc/passwd"
@@ -19,7 +17,7 @@ file_shadow = "/etc/shadow"
 print(f"{b}[*] {p}Mengecek file '{file_passwd}'...{r}")
 time.sleep(3)
 
-if os.path.exists(file_passwd):
+if os.path.isfile(file_passwd):
     print(f"{h}[+] {p}File '{file_passwd}' ditemukan.{r}")
 else:
     time.sleep(2)
@@ -29,7 +27,7 @@ else:
 print(f"{b}[*] {p}Mengecek file '{file_shadow}'...{r}")
 time.sleep(3)
 
-if os.path.exists(file_shadow):
+if os.path.isfile(file_shadow):
     print(f"{h}[+] {p}File '{file_shadow}' ditemukan.{r}")
 else:
     time.sleep(2)
