@@ -76,7 +76,11 @@ with open(output_file, 'w') as output:
 
             # Attempt to crack password using rockyou.txt wordlist
             wordlist_path = "/usr/share/wordlists/rockyou.txt"
-            
+
+            if not os.path.isfile(wordlist_path):
+                print(f"{m}[-] {w}Wordlist file '{wordlist_file}' not found.{r}")
+                exit(1)
+
             with open(wordlist_path, 'r', encoding='latin-1') as wordlist_file:
                 passwords = wordlist_file.readlines()
 
