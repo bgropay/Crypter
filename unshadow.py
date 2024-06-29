@@ -39,22 +39,23 @@ ct = colorama.Fore.LIGHTCYAN_EX   # cyan terang
 p = colorama.Fore.LIGHTWHITE_EX  # putih
 r = colorama.Fore.RESET    # reset
 
-waktu = datetime.datetime.now()
-fw = waktu.strftime("%H:%M:%S")
+while True:
+    waktu = datetime.datetime.now()
+    fw = waktu.strftime("%H:%M:%S")
 
-# Path file passwd dan shadow
-file_passwd = "/etc/passwd"
-file_shadow = "/etc/shadow"
+    # Path file passwd dan shadow
+    file_passwd = "/etc/passwd"
+    file_shadow = "/etc/shadow"
 
-print(f"{p}[{c}{fw}{p}] [{h}INFO{p}] {r}Mengecek file '{file_passwd}'...{r}")
-time.sleep(3)
-
-if os.path.isfile(file_passwd):
-    print(f"{p}[{ct}{fw}{p}] [{ht}INFO{p}] File '{file_passwd}' ditemukan.{r}")
-else:
-    time.sleep(2)
-    print(f"{m}[-] {p}File '{file_passwd}' tidak ditemukan.{r}")
-    exit(1)
+    print(f"{p}[{c}{fw}{p}] [{h}INFO{p}] {r}Mengecek file '{file_passwd}'...{r}")
+    time.sleep(3)
+    
+    if os.path.isfile(file_passwd):
+        print(f"{p}[{ct}{fw}{p}] [{ht}INFO{p}] File '{file_passwd}' ditemukan.{r}")
+    else:
+        time.sleep(2)
+        print(f"{m}[-] {p}File '{file_passwd}' tidak ditemukan.{r}")
+        exit(1)
 
 print(f"{b}[*] {p}Mengecek file '{file_shadow}'...{r}")
 time.sleep(3)
