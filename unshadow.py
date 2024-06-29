@@ -1,3 +1,8 @@
+# Program : Menggabungkan informasi dari file /etc/passwd dan /etc/shadow pada sistem operasi Linux.
+# Pembuat : BgRopay
+# Github  : https://github.com/bgropay/Unshadow
+# Lisensi : MIT
+
 import os
 import time
 import colorama
