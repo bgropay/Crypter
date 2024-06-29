@@ -14,6 +14,7 @@
 
 import os
 import time
+import datetime
 
 while True:    
     try:
@@ -37,11 +38,14 @@ c = colorama.Fore.LIGHTCYAN_EX   # cyan
 p = colorama.Fore.LIGHTWHITE_EX  # putih
 r = colorama.Style.RESET_ALL     # reset
 
+waktu = datetime.datetime.now()
+fw = waktu.strftime("%H:%M:%S")
+
 # Path file passwd dan shadow
 file_passwd = "/etc/passwd"
 file_shadow = "/etc/shadow"
 
-print(f"{b}[*] {p}Mengecek file '{file_passwd}'...{r}")
+print(f"{p}[{c}{fw}{p}] Mengecek file '{file_passwd}'...{r}")
 time.sleep(3)
 
 if os.path.isfile(file_passwd):
