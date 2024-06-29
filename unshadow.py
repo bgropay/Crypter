@@ -12,6 +12,7 @@ import colorama
 # Colors
 g = colorama.Fore.LIGHTGREEN_EX # Green 
 w = colorama.Fore.LIGHTWHITE_EX # White 
+m = colorama.Fore.LIGHTRED_EX   # Red
 r = colorama.Fore.RESET         # Reset 
 
 # Check if the operating system is Linux
@@ -21,7 +22,15 @@ if platform.system() != 'Linux':
 
 # Paths to passwd and shadow files
 passwd_file = "/etc/passwd"
+
+if not os.path.isfile(passwd_file):
+    print(f"{m}[-] {w}Passwd file '{passwd_file}' not found.{r}")
+
 shadow_file = "/etc/shadow"
+
+if not os.path.isfile(shadow_file):
+    print(f"{m}[-] {w}Shadow file '{shadow_file}' not found.{r}")
+    
 output_file = "hash.txt"
 
 passwd_dict = {}
