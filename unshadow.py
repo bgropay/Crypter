@@ -8,9 +8,10 @@ import os
 import crypt 
 from colorama import Fore
 
-g = Fore.LIGHTGREEN_EX
-p = Fore.LIGHTWHITE_EX
-r = Fore.RESET
+# Colors
+g = Fore.LIGHTGREEN_EX # Green 
+w = Fore.LIGHTWHITE_EX # White 
+r = Fore.RESET         # Reset 
 
 # Paths to passwd and shadow files
 passwd_file = "/etc/passwd"
@@ -66,5 +67,5 @@ with open(output_file, 'w') as output:
             for password in passwords:
                 password = password.strip()
                 if crypt.crypt(password, hashed_password) == hashed_password:
-                    print(f"{h}[+] {p}Username: {username}, Password: {password}{r}")
+                    print(f"{g}[+] {w}Username: {username}, Password: {password}{r}")
                     break
