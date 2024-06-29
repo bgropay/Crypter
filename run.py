@@ -106,9 +106,9 @@ with open(wordlist_path, "r", encoding="latin-1", errors="ignore") as wordlist_f
 for username in shadow_dict:
     hashed_password = shadow_dict[username][1]
     print(f"{g}[+] {w}Found username: {shadow_dict[username][0]}{r}")
+    print(f"{b}[*] {w}Cracking the password for username: {shadow_dict[username][0]}{r}")
     for password in passwords:
         password = password.strip()
-        print(f"{b}[*] {w}Cracking the password for username: {shadow_dict[username][0]}{r}")
         if crypt.crypt(password, hashed_password) == hashed_password:
             print(f"{g}[+] {w} Password found for username: {username}, Password is: {password}{r}")
             cracked_users.append((username, password))
