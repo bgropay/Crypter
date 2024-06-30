@@ -114,7 +114,7 @@ with open(file_wordlist, "r", encoding="latin-1", errors="ignore") as wordlist:
 
 for nama_pengguna in dict_shadow:
     kata_sandi_hash = dict_shadow[nama_pengguna][1]
-    print(f"{g}[+] {p}Menemukan nama pengguna: {h}{dict_shadow[nama_pengguna][0]}{r}")
+    print(f"{h}[+] {p}Menemukan nama pengguna: {h}{dict_shadow[nama_pengguna][0]}{r}")
     print(f"{b}[*] {p}Meng-crack kata sandi untuk nama pengguna: {b}{dict_shadow[nama_pengguna][0]}{p}...{r}")
     kata_sandi_ditemukan = False
     for kata_sandi in daftar_kata_sandi:
