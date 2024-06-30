@@ -139,6 +139,8 @@ for nama_pengguna in dict_shadow:
                 jumlah_yang_berhasil_di_crack += 1
                 kata_sandi_ditemukan = True
                 break
+            else:
+                print(f"{kata_sandi}()")
         except KeyboardInterrupt:
             print(f"\n{m}[-] {p}Berhenti...{r}")
             exit(1)
