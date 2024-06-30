@@ -112,18 +112,18 @@ def main():
     os.system("clear")
 
     print(f"""
-    {m} ___    ___    _     _  ___   _____  ___    ___   {r}
-    {m}(  _`\ |  _`\ ( )   ( )(  _`\(_   _)(  _`\ |  _`\ {r}
-    {m}| ( (_)| (_) )`\`\_/'/'| |_) ) | |  | (_(_)| (_) ){r}
-    {m}| |  _ | ,  /   `\ /'  | ,__/' | |  |  _)_ | ,  / {r}
-    {m}| (_( )| |\ \    | |   | |     | |  | (_( )| |\ \ {r}
-    {m}(____/'(_) (_)   (_)   (_)     (_)  (____/'(_) (_){r}
-    {w}         Crack Linux Password with Python         {r}
-    {b}        https://github.com/bgropay/crypter        {r}
-    """)
+{m} ___    ___    _     _  ___   _____  ___    ___   {r}
+{m}(  _`\ |  _`\ ( )   ( )(  _`\(_   _)(  _`\ |  _`\ {r}
+{m}| ( (_)| (_) )`\`\_/'/'| |_) ) | |  | (_(_)| (_) ){r}
+{m}| |  _ | ,  /   `\ /'  | ,__/' | |  |  _)_ | ,  / {r}
+{m}| (_( )| |\ \    | |   | |     | |  | (_( )| |\ \ {r}
+{m}(____/'(_) (_)   (_)   (_)     (_)  (____/'(_) (_){r}
+{w}         Crack Linux Password with Python         {r}
+{b}        https://github.com/bgropay/crypter        {r}
+""")
 
-    passwd_file = get_input_filepath("Enter the path to the passwd file", "Passwd")
-    shadow_file = get_input_filepath("Enter the path to the shadow file", "Shadow")
+    passwd_file = get_input_filepath("Enter the path to the Passwd file", "Passwd")
+    shadow_file = get_input_filepath("Enter the path to the Shadow file", "Shadow")
     input_wordlist = get_input_filepath("Enter the path to the Wordlist file", "Wordlist")
     
     passwd_dict = read_passwd_file(passwd_file)
