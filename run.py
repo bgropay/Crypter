@@ -26,7 +26,7 @@ if platform.system() != 'Linux':
 # Enter the path to  the Passwd file
 while True:
     try:
-        passwd_file = input(f"{c}[»] {w} Masukkan jalur ke file Passwd (contoh: /etc/passwd): ")
+        passwd_file = input(f"{c}[»] {w}Masukkan jalur ke file Passwd (contoh: /etc/passwd): ")
         # condition if the Passwd file is not found 
         if not os.path.isfile(passwd_file):
             print(f"{m}[-] {w}File Passwd '{passwd_file}' tidak ditemukan.{r}")
@@ -39,7 +39,7 @@ while True:
 # Enter the path to the Shadow file
 while True:
     try:
-        shadow_file = input(f"{c}[»] {w} Masukkan jalur ke file Shadow (contoh: /etc/shadow): ")
+        shadow_file = input(f"{c}[»] {w}Masukkan jalur ke file Shadow (contoh: /etc/shadow): ")
         # Condition if the Shadow file is not found 
         if not os.path.isfile(shadow_file):
             print(f"{m}[-] {w}File Shadow '{shadow_file}' tidak ditemukan.{r}")
@@ -52,7 +52,7 @@ while True:
 # Enter the path to the Wordlist file
 while True:
     try:
-        input_wordlist = input(f"{c}[»] {w} Masukkan jalur ke file Wordlist: ")
+        input_wordlist = input(f"{c}[»] {w}Masukkan jalur ke file Wordlist: ")
         # Condition if the wordlist file is not found 
         if not os.path.isfile(input_wordlist):
             print(f"{m}[-] {w}File wordlist '{wordlist_file}' tidak ditemukan.{r}")
@@ -113,30 +113,30 @@ wordlist_path = input_wordlist
 with open(wordlist_path, "r", encoding="latin-1", errors="ignore") as wordlist_file:
     passwords = wordlist_file.readlines()
     password_count = len(passwords)
-    print(f"{b}[*] {w}Number of passwords in the wordlist file: {b}{password_count}{r}")
+    print(f"{b}[*] {w}Jumlah kata sandi dalam file Wordlist: {b}{password_count}{r}")
 
 # Crack Linux Password with Crypt
 for username in shadow_dict:
     hashed_password = shadow_dict[username][1]
-    print(f"{g}[+] {w}Found username: {g}{shadow_dict[username][0]}{r}")
-    print(f"{b}[*] {w}Cracking the password for username: {b}{shadow_dict[username][0]}{w}...{r}")
+    print(f"{g}[+] {w}Menemukan username: {g}{shadow_dict[username][0]}{r}")
+    print(f"{b}[*] {w}Memecahkan kata sandi untuk username: {b}{shadow_dict[username][0]}{w}...{r}")
     password_found = False
     for password in passwords:
         password = password.strip()
         try:
             if crypt.crypt(password, hashed_password) == hashed_password:
-                print(f"{g}[+] {w}Password found for username: {g}{username}{w}, Password is: {g}{password}{r}")
+                print(f"{g}[+] {w} Kata sandi berhasil ditemukan untuk username: {g}{username}{w}, kata sandinya adalah: {g}{password}{r}")
                 cracked_users.append((username, password))
                 cracked_count += 1
                 password_found = True
                 break
         except KeyboardInterrupt:
-            print(f"\n{m}[-] {w}Quitting...{r}")
+            print(f"\n{m}[-] {w} Keluar...{r}")
             exit(1)
             
     if not password_found:
-        print(f"{m}[-] {w}Password not found for username: {m}{username}{r}")
+        print(f"{m}[-] {w}Kata sandi tidak ditemukan untuk username: {m}{username}{r}")
 
-print(f"{g}\n[+] {w}Number of usernames successfully cracked: {g}{cracked_count}{r}")
+print(f"{g}\n[+] {w}Jumlah username yang berhasil di-crack: {g}{cracked_count}{r}")
 for username, password in cracked_users:
-    print(f"{g}[+] {w}Username: {g}{username}{w}, Password: {g}{password}{r}")
+    print(f"{g}[+] {w}Username: {g}{username}{w}, kata sandi: {g}{password}{r}")
