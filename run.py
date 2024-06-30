@@ -23,20 +23,6 @@ if platform.system() != 'Linux':
     print("This script is designed to run only on Linux systems.")
     sys.exit(1)
 
-os.system("clear")
-
-print(f"""
-{m} ___    ___    _     _  ___   _____  ___    ___   {r}
-{m}(  _`\ |  _`\ ( )   ( )(  _`\(_   _)(  _`\ |  _`\ {r}
-{m}| ( (_)| (_) )`\`\_/'/'| |_) ) | |  | (_(_)| (_) ){r}
-{m}| |  _ | ,  /   `\ /'  | ,__/' | |  |  _)_ | ,  / {r}
-{m}| (_( )| |\ \    | |   | |     | |  | (_( )| |\ \ {r}
-{m}(____/'(_) (_)   (_)   (_)     (_)  (____/'(_) (_){r}
-
-{w}         Crack Linux Password with Python         {r}
-{b}        https://github.com/bgropay/crypter        {r}
-""")
-
 # Enter the path to  the Passwd file
 while True:
     try:
