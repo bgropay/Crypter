@@ -23,18 +23,21 @@ if platform.system() != 'Linux':
     print("This script is designed to run only on Linux systems.")
     sys.exit(1)
 
-# Paths to passwd and shadow files
-passwd_file = "/etc/passwd"
-
-if not os.path.isfile(passwd_file):
-    print(f"{m}[-] {w}Passwd file '{passwd_file}' not found.{r}")
-    exit(1)
+# Enter the path to  the Passwd file
+while True:
+    passwd_file = input("[»] Enter the path to the Passwd file: ")
+    if not os.path.isfile(passwd_file):
+        print(f"{m}[-] {w}Passwd file '{passwd_file}' not found.{r}")
+        continue
+    break
     
-shadow_file = "/etc/shadow"
-
-if not os.path.isfile(shadow_file):
-    print(f"{m}[-] {w}Shadow file '{shadow_file}' not found.{r}")
-    exit(1)
+# Enter the path to the Shadow file
+while True:
+    shadow_file = input(f"[»] Enter the path to the Shadow file: ")
+    if os.path.isfile(shadow_file):
+        print(f"{m}[-] Shadow file '{shadow_file}' not found.")
+        continue
+    break
     
 output_file = "hash.txt"
 
