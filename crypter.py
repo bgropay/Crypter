@@ -10,6 +10,7 @@ import crypt
 import platform
 import colorama
 import sys
+from multiprocessing import cpu_count, Pool
 
 # Colors
 g = colorama.Fore.LIGHTGREEN_EX # Green
@@ -77,7 +78,15 @@ def combine_info(passwd_dict, shadow_dict, output_file):
                 ])
                 output.write(combined + '\n')
 
-def crack_passwords(shadow_dict, wordlist_path):
+def crack_password(username_password_tuple):
+    username, hashed_password, passwords = username_password_tuple
+    for password in passwords:
+        password = password.strip()
+        if crypt.crypt(password, hashed_password) == hashed_password:
+            return (username, password)
+    return (username, None)
+
+def crack_passwords_parallel(shadow_dict, wordlist_path):
     cracked_count = 0
     cracked_users = []
 
@@ -86,20 +95,18 @@ def crack_passwords(shadow_dict, wordlist_path):
         password_count = len(passwords)
         print(f"{b}[*] {w}Number of passwords in the wordlist file '{wordlist_path}': {password_count}{r}")
 
-    for username in shadow_dict:
-        hashed_password = shadow_dict[username][1]
-        print(f"{g}[+] {w}Found username: {shadow_dict[username][0]}{r}")
-        print(f"{b}[*] {w}Cracking the password for username: {shadow_dict[username][0]}...{r}")
-        password_found = False
-        for password in passwords:
-            password = password.strip()
-            if crypt.crypt(password, hashed_password) == hashed_password:
-                print(f"{g}[+] {w}Password found for username: {username}, Password is: {password}{r}")
-                cracked_users.append((username, password))
-                cracked_count += 1
-                password_found = True
-                break
-        if not password_found:
+    pool = Pool(cpu_count())
+    args = [(username, shadow_dict[username][1], passwords) for username in shadow_dict]
+    results = pool.map(crack_password, args)
+    pool.close()
+    pool.join()
+
+    for username, password in results:
+        if password:
+            print(f"{g}[+] {w}Password found for username: {username}, Password is: {password}{r}")
+            cracked_users.append((username, password))
+            cracked_count += 1
+        else:
             print(f"{m}[-] {w}Password not found for username: {username}{r}")
 
     print(f"{g}\n[+] {w}Number of usernames successfully cracked: {cracked_count}{r}")
@@ -112,24 +119,24 @@ def main():
     os.system("clear")
 
     print(f"""
-{m} ___    ___    _     _  ___   _____  ___    ___   {r}
-{m}(  _`\ |  _`\ ( )   ( )(  _`\(_   _)(  _`\ |  _`\ {r}
-{m}| ( (_)| (_) )`\`\_/'/'| |_) ) | |  | (_(_)| (_) ){r}
-{m}| |  _ | ,  /   `\ /'  | ,__/' | |  |  _)_ | ,  / {r}
-{m}| (_( )| |\ \    | |   | |     | |  | (_( )| |\ \ {r}
-{m}(____/'(_) (_)   (_)   (_)     (_)  (____/'(_) (_){r}
-{w}         Crack Linux Password with Python         {r}
-{b}        https://github.com/bgropay/crypter        {r}
-""")
+    {m} ___    ___    _     _  ___   _____  ___    ___   {r}
+    {m}(  _`\ |  _`\ ( )   ( )(  _`\(_   _)(  _`\ |  _`\ {r}
+    {m}| ( (_)| (_) )`\`\_/'/'| |_) ) | |  | (_(_)| (_) ){r}
+    {m}| |  _ | ,  /   `\ /'  | ,__/' | |  |  _)_ | ,  / {r}
+    {m}| (_( )| |\ \    | |   | |     | |  | (_( )| |\ \ {r}
+    {m}(____/'(_) (_)   (_)   (_)     (_)  (____/'(_) (_){r}
+    {w}         Crack Linux Password with Python         {r}
+    {b}        https://github.com/bgropay/crypter        {r}
+    """)
 
-    passwd_file = get_input_filepath("Enter the path to the Passwd file", "Passwd")
-    shadow_file = get_input_filepath("Enter the path to the Shadow file", "Shadow")
+    passwd_file = get_input_filepath("Enter the path to the passwd file", "Passwd")
+    shadow_file = get_input_filepath("Enter the path to the shadow file", "Shadow")
     input_wordlist = get_input_filepath("Enter the path to the Wordlist file", "Wordlist")
     
     passwd_dict = read_passwd_file(passwd_file)
     shadow_dict = read_shadow_file(shadow_file, passwd_dict)
     combine_info(passwd_dict, shadow_dict, "hash.txt")
-    crack_passwords(shadow_dict, input_wordlist)
+    crack_passwords_parallel(shadow_dict, input_wordlist)
 
 if __name__ == "__main__":
     main()
