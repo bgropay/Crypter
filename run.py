@@ -35,7 +35,7 @@ while True:
 while True:
     shadow_file = input(f"[»] Enter the path to the Shadow file: ")
     if os.path.isfile(shadow_file):
-        print(f"{m}[-] Shadow file '{shadow_file}' not found.")
+        print(f"{m}[-] {w}Shadow file '{shadow_file}' not found.{r}")
         continue
     break
     
