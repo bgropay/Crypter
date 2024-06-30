@@ -110,7 +110,7 @@ pengguna_yang_berhasil_di_crack = []
 with open(file_wordlist, "r", encoding="latin-1", errors="ignore") as wordlist:
     daftar_kata_sandi = wordlist.readlines()
     jumlah_kata_sandi = len(daftar_kata_sandi)
-    print(f"{b}[*] {p}Jumlah kata sandi dalam file Wordlist: {b}{daftar_kata_sandi}{r}")
+    print(f"{b}[*] {p}Jumlah kata sandi dalam file Wordlist: {b}{jumlah_kata_sandi}{r}")
 
 for nama_pengguna in dict_shadow:
     kata_sandi_hash = dict_shadow[nama_pengguna][1]
