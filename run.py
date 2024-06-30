@@ -43,7 +43,7 @@ while True:
         passwd_file = input(f"{c}[»] {w}Enter the path to the Passwd file: ")
         # condition if the Passwd file is not found 
         if not os.path.isfile(passwd_file):
-            print(f"{m}[-] {w}Passwd file '{passwd_file}' not found.{r}")
+            print(f"{m}[-] {w}Passwd file not found.{r}")
             continue
         break
     except KeyboardInterrupt:
@@ -56,7 +56,7 @@ while True:
         shadow_file = input(f"{c}[»] {w}Enter the path to the Shadow file: ")
         # Condition if the Shadow file is not found 
         if not os.path.isfile(shadow_file):
-            print(f"{m}[-] {w}Shadow file '{shadow_file}' not found.{r}")
+            print(f"{m}[-] {w}Shadow file not found.{r}")
             continue
         break
     except KeyboardInterrupt:
@@ -69,7 +69,7 @@ while True:
         input_wordlist = input(f"{c}[»] {w}Enter the path to the Wordlist file: ")
         # Condition if the wordlist file is not found 
         if not os.path.isfile(input_wordlist):
-            print(f"{m}[-] {w}Wordlist file '{input_wordlist}' not found.{r}")
+            print(f"{m}[-] {w}Wordlist file not found.{r}")
             continue
         break
     except KeyboardInterrupt:
