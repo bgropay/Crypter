@@ -11,10 +11,10 @@ import platform
 import colorama
 
 # Warna 
-g = colorama.Fore.LIGHTGREEN_EX # Hijau 
+h = colorama.Fore.LIGHTGREEN_EX # Hijau 
 b = colorama.Fore.LIGHTBLUE_EX  # Biru 
 c = colorama.Fore.LIGHTCYAN_EX  # Cyan
-w = colorama.Fore.LIGHTWHITE_EX # Putih 
+p = colorama.Fore.LIGHTWHITE_EX # Putih 
 m = colorama.Fore.LIGHTRED_EX   # Merah 
 r = colorama.Fore.RESET         # Reset 
 
@@ -26,40 +26,40 @@ if platform.system() != 'Linux':
 # Masukkan jalur ke file Passwd
 while True:
     try:
-        passwd_file = input(f"{c}[»] {w}Masukkan jalur ke file Passwd (contoh: /etc/passwd): ")
+        passwd_file = input(f"{c}[»] {p}Masukkan jalur ke file Passwd (contoh: /etc/passwd): ")
         # kondisi jika file Passwd tidak ditemukan
         if not os.path.isfile(passwd_file):
-            print(f"{m}[-] {w}File Passwd '{passwd_file}' tidak ditemukan.{r}")
+            print(f"{m}[-] {p}File Passwd '{passwd_file}' tidak ditemukan.{r}")
             continue
         break
     except KeyboardInterrupt:
-        print(f"\n{m}[-] {w}Berhenti...{r}")
+        print(f"\n{m}[-] {p}Berhenti...{r}")
         exit(1)
     
 # Masukkan jalur ke file Shadow 
 while True:
     try:
-        shadow_file = input(f"{c}[»] {w}Masukkan jalur ke file Shadow (contoh: /etc/shadow): ")
+        shadow_file = input(f"{c}[»] {p}Masukkan jalur ke file Shadow (contoh: /etc/shadow): ")
         # kondisi jika file Shadow tidak ditemukan 
         if not os.path.isfile(shadow_file):
-            print(f"{m}[-] {w}File Shadow '{shadow_file}' tidak ditemukan.{r}")
+            print(f"{m}[-] {p}File Shadow '{shadow_file}' tidak ditemukan.{r}")
             continue
         break
     except KeyboardInterrupt:
-        print(f"\n{m}[-] {w}Berhenti...{r}")
+        print(f"\n{m}[-] {p}Berhenti...{r}")
         exit(1)
 
 # Masukkan jalur ke file Wordlist 
 while True:
     try:
-        input_wordlist = input(f"{c}[»] {w}Masukkan jalur ke file Wordlist: ")
+        input_wordlist = input(f"{c}[»] {p}Masukkan jalur ke file Wordlist: ")
         # kondisi jika file Wordlist tidak ditemukan
         if not os.path.isfile(input_wordlist):
-            print(f"{m}[-] {w}File wordlist '{wordlist_file}' tidak ditemukan.{r}")
+            print(f"{m}[-] {p}File wordlist '{wordlist_file}' tidak ditemukan.{r}")
             continue
         break
     except KeyboardInterrupt:
-        print(f"\n{m}[-] {w}Berhenti...{r}")
+        print(f"\n{m}[-] {p}Berhenti...{r}")
         exit(1)
 
 # Output file
