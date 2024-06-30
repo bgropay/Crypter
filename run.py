@@ -110,30 +110,30 @@ pengguna_yang_berhasil_di_crack = []
 with open(file_wordlist, "r", encoding="latin-1", errors="ignore") as wordlist:
     daftar_kata_sandi = wordlist.readlines()
     jumlah_kata_sandi = len(daftar_kata_sandi)
-    print(f"{b}[*] {w}Jumlah kata sandi dalam file Wordlist: {b}{daftar_kata_sandi}{r}")
+    print(f"{b}[*] {p}Jumlah kata sandi dalam file Wordlist: {b}{daftar_kata_sandi}{r}")
 
 for nama_pengguna in dict_shadow:
     kata_sandi_hash = dict_shadow[nama_pengguna][1]
-    print(f"{g}[+] {w}Menemukan nama pengguna: {g}{dict_shadow[nama_pengguna][0]}{r}")
-    print(f"{b}[*] {w}Meng-crack kata sandi untuk nama pengguna: {b}{dict_shadow[nama_pengguna][0]}{w}...{r}")
+    print(f"{g}[+] {p}Menemukan nama pengguna: {h}{dict_shadow[nama_pengguna][0]}{r}")
+    print(f"{b}[*] {p}Meng-crack kata sandi untuk nama pengguna: {b}{dict_shadow[nama_pengguna][0]}{p}...{r}")
     kata_sandi_ditemukan = False
     for kata_sandi in daftar_kata_sandi:
         kata_sandi = kata_sandi.strip()
         try:
             # Crack Kata Sandi Linux dengan Crypt
             if crypt.crypt(kata_sandi, kata_sandi_hash) == kata_sandi_hash:
-                print(f"{g}[+] {w}Kata sandi berhasil di-crack untuk nama pengguna: {g}{nama_pengguna}{w}, kata sandinya adalah: {g}{kata_sandi}{r}")
+                print(f"{h}[+] {p}Kata sandi berhasil di-crack untuk nama pengguna: {h}{nama_pengguna}{p}, kata sandinya adalah: {h}{kata_sandi}{r}")
                 pengguna_yang_berhasil_di_crack.append((nama_pengguna, kata_sandi))
                 jumlah_yang_berhasil_di_crack += 1
                 kata_sandi_ditemukan = True
                 break
         except KeyboardInterrupt:
-            print(f"\n{m}[-] {w}Berhenti...{r}")
+            print(f"\n{m}[-] {p}Berhenti...{r}")
             exit(1)
             
     if not kata_sandi_ditemukan:
-        print(f"{m}[-] {w}Kata sandi gagal di-crack untuk nama pengguna: {m}{nama_pengguna}{r}")
+        print(f"{m}[-] {p}Kata sandi gagal di-crack untuk nama pengguna: {m}{nama_pengguna}{r}")
 
-print(f"{g}\n[+] {w}Jumlah nama pengguna yang berhasil di-crack: {g}{jumlah_yang_berhasil_di_crack}{r}")
+print(f"{h}\n[+] {p}Jumlah nama pengguna yang berhasil di-crack: {h}{jumlah_yang_berhasil_di_crack}{r}")
 for nama_pengguna, kata_sandi in pengguna_yang_berhasil_di_crack:
-    print(f"{g}[+] {w}Nama pengguna: {g}{nama_pengguna}{w}, kata sandi: {g}{kata_sandi}{r}")
+    print(f"{h}[+] {p}Nama pengguna: {h}{nama_pengguna}{p}, kata sandi: {h}{kata_sandi}{r}")
