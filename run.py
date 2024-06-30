@@ -153,4 +153,4 @@ for username in shadow_dict:
 
 print(f"{g}\n[+] {w}Number of usernames successfully cracked '{cracked_count}'{r}")
 for username, password in cracked_users:
-    print(f"{g}[+] {w}Username '{username}', Password: '{password}'{r}")
+    print(f"{g}[+] {w}Username: {g}{username}{w}, Password: {g}{password}{r}")
