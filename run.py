@@ -23,9 +23,6 @@ if platform.system() != 'Linux':
     print("This script is designed to run only on Linux systems.")
     sys.exit(1)
 
-passwd_dict = {}
-shadow_dict = {}
-
 os.system("clear")
 
 print(f"""
@@ -68,6 +65,9 @@ while True:
 
 # Output file
 output_file = "hash.txt"
+
+passwd_dict = {}
+shadow_dict = {}
 
 # Read /etc/passwd file
 with open(passwd_file, 'r') as passwd:
