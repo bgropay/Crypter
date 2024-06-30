@@ -50,11 +50,12 @@ while True:
 # Enter the path to the Shadow file
 while True:
     shadow_file = input(f"{c}[»] {w}Enter the path to the Shadow file: ")
-    if os.path.isfile(shadow_file):
+    if not os.path.isfile(shadow_file):
         print(f"{m}[-] {w}Shadow file '{shadow_file}' not found.{r}")
         continue
     break
 
+# Enter the path to the Wordlist file
 while True:
     input_wordlist = input(f"{c}[»] {w}Enter the path to the Wordlist file: ")
 
@@ -63,6 +64,7 @@ while True:
         continue
     break
 
+# Output file
 output_file = "hash.txt"
 
 # Read /etc/passwd file
@@ -104,6 +106,7 @@ with open(output_file, 'w') as output:
 cracked_count = 0
 cracked_users = []
 
+# Wordlist
 wordlist_path = input_wordlist
 
 with open(wordlist_path, "r", encoding="latin-1", errors="ignore") as wordlist_file:
@@ -111,6 +114,7 @@ with open(wordlist_path, "r", encoding="latin-1", errors="ignore") as wordlist_f
     password_count = len(passwords)
     print(f"{b}[*] {w}Number of passwords in the wordlist file '{wordlist_path}': {password_count}{r}")
 
+# Crack Linux Password with Crypt
 for username in shadow_dict:
     hashed_password = shadow_dict[username][1]
     print(f"{g}[+] {w}Found username: {shadow_dict[username][0]}{r}")
