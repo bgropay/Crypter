@@ -8,8 +8,8 @@ setup(
     long_description=open('README.md').read(),  # Ensure you have a README.md file
     long_description_content_type="text/markdown",
     url="https://github.com/bgropay/crypter",
-    packages=find_packages(),  # No need to use find_packages() if it's a single module
-    py_modules=["crypter"],
+    packages=find_packages(),  # find_packages() is typically used for multi-module packages
+    py_modules=["crypter"],  # Use this for single-module packages
     install_requires=[
         "colorama",
     ],
