@@ -23,6 +23,18 @@ if platform.system() != 'Linux':
     print(f"{m}[-] {p}Program ini dirancang untuk dijalankan hanya pada sistem operasi Linux.{r}")
     exit(1)
 
+os.system("clear")
+
+print(f"""{p} ___________________________{r}
+{p}< {c}Selamat datang di Crypter {p}>{r}
+ {p}---------------------------{r}
+{p}        \   ^__^{r}
+{p}         \  (oo)\_______{r}
+{p}            (__)\       )\/{r}
+{p}                ||----w |{r}
+{p}                ||     ||{r}
+""")
+
 # Masukkan jalur ke file Passwd
 while True:
     try:
