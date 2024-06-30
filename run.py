@@ -135,7 +135,7 @@ for username in shadow_dict:
             exit(1)
             
     if not password_found:
-        print(f"{m}[-] {w}Kata sandi tidak ditemukan untuk nama pengguna: {m}{username}{r}")
+        print(f"{m}[-] {w}Kata sandi gagal di-crack untuk nama pengguna: {m}{username}{r}")
 
 print(f"{g}\n[+] {w}Jumlah nama pengguna yang berhasil di-crack: {g}{cracked_count}{r}")
 for username, password in cracked_users:
