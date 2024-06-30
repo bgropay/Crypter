@@ -10,24 +10,24 @@ import crypt
 import platform
 import colorama
 
-# Colors
-g = colorama.Fore.LIGHTGREEN_EX # Green
-b = colorama.Fore.LIGHTBLUE_EX  # Blue
+# Warna 
+g = colorama.Fore.LIGHTGREEN_EX # Hijau 
+b = colorama.Fore.LIGHTBLUE_EX  # Biru 
 c = colorama.Fore.LIGHTCYAN_EX  # Cyan
-w = colorama.Fore.LIGHTWHITE_EX # White 
-m = colorama.Fore.LIGHTRED_EX   # Red
+w = colorama.Fore.LIGHTWHITE_EX # Putih 
+m = colorama.Fore.LIGHTRED_EX   # Merah 
 r = colorama.Fore.RESET         # Reset 
 
-# Check if the operating system is Linux
+# Periksa apakah sistem operasinya Linux
 if platform.system() != 'Linux':
     print("This script is designed to run only on Linux systems.")
     sys.exit(1)
 
-# Enter the path to  the Passwd file
+# Masukkan jalur ke file Passwd
 while True:
     try:
         passwd_file = input(f"{c}[»] {w}Masukkan jalur ke file Passwd (contoh: /etc/passwd): ")
-        # condition if the Passwd file is not found 
+        # kondisi jika file Passwd tidak ditemukan
         if not os.path.isfile(passwd_file):
             print(f"{m}[-] {w}File Passwd '{passwd_file}' tidak ditemukan.{r}")
             continue
@@ -36,11 +36,11 @@ while True:
         print(f"\n{m}[-] {w}Berhenti...{r}")
         exit(1)
     
-# Enter the path to the Shadow file
+# Masukkan jalur ke file Shadow 
 while True:
     try:
         shadow_file = input(f"{c}[»] {w}Masukkan jalur ke file Shadow (contoh: /etc/shadow): ")
-        # Condition if the Shadow file is not found 
+        # kondisi jika file Shadow tidak ditemukan 
         if not os.path.isfile(shadow_file):
             print(f"{m}[-] {w}File Shadow '{shadow_file}' tidak ditemukan.{r}")
             continue
@@ -49,11 +49,11 @@ while True:
         print(f"\n{m}[-] {w}Berhenti...{r}")
         exit(1)
 
-# Enter the path to the Wordlist file
+# Masukkan jalur ke file Wordlist 
 while True:
     try:
         input_wordlist = input(f"{c}[»] {w}Masukkan jalur ke file Wordlist: ")
-        # Condition if the wordlist file is not found 
+        # kondisi jika file Wordlist tidak ditemukan
         if not os.path.isfile(input_wordlist):
             print(f"{m}[-] {w}File wordlist '{wordlist_file}' tidak ditemukan.{r}")
             continue
