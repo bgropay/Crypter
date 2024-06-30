@@ -65,8 +65,8 @@ while True:
 # Output file
 output_file = "hash.txt"
 
-passwd_dict = {}
-shadow_dict = {}
+dict_passwd = {}
+dict_shadow = {}
 
 # Baca file /etc/passwd
 with open(file_passwd, 'r') as passwd:
@@ -76,33 +76,33 @@ with open(file_passwd, 'r') as passwd:
             nama_pengguna = bagian[0]
             gecos = bagian[4]  # Extract GECOS field
             if 'user' in gecos.lower():  # Check for 'user' in GECOS
-                passwd_dict[nama_pengguna] = bagian
+                dict_passwd[nama_pengguna] = bagian
 
 # Baca file /etc/shadow 
-with open(shadow_file, 'r') as shadow:
-    for line in shadow:
-        parts = line.strip().split(':')
-        if len(parts) > 1:
-            username = parts[0]
-            if username in passwd_dict:
-                shadow_dict[username] = parts
+with open(file_shadow, 'r') as shadow:
+    for baris in shadow:
+        bagian = baris.strip().split(':')
+        if len(bagian) > 1:
+            nama_pengguna = bagian[0]
+            if nama_pengguna in dict_passwd:
+                dict_shadow[nama_pengguna] = bagian 
 
 # Gabungkan informasi untuk pengguna yang ada di kedua file
 with open(output_file, 'w') as output:
-    for username in passwd_dict:
-        if username in shadow_dict:
-            passwd_parts = passwd_dict[username]
-            shadow_parts = shadow_dict[username]
-            combined = ':'.join([
-                passwd_parts[0],  # Nama pengguna 
-                shadow_parts[1],  # Kata sandi Hash
-                passwd_parts[2],  # UID
-                passwd_parts[3],  # GID
-                passwd_parts[4],  # GECOS
-                passwd_parts[5],  # home directory
-                passwd_parts[6]   # shell
+    for nama_pengguna in dict_passwd:
+        if nama_pengguna in dict_shadow:
+            bagian_passwd = dict_passwd[nama_pengguna]
+            bagian_shadow = dict_shadow[nama_pengguna]
+            digabungkan = ':'.join([
+                bagian_passwd[0],  # Nama pengguna 
+                bagian_shadow[1],  # Kata sandi Hash
+                bagian_passwd[2],  # UID
+                bagian_passwd[3],  # GID
+                bagian_passwd[4],  # GECOS
+                bagian_passwd[5],  # home directory
+                bagian_passwd[6]   # shell
             ])
-            output.write(combined + '\n')
+            output.write(digabungkan + '\n')
 
 cracked_count = 0
 cracked_users = []
