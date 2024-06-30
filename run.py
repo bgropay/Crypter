@@ -23,24 +23,6 @@ if platform.system() != 'Linux':
     print("This script is designed to run only on Linux systems.")
     sys.exit(1)
 
-# Enter the path to  the Passwd file
-while True:
-    passwd_file = input("[»] Enter the path to the Passwd file: ")
-    if not os.path.isfile(passwd_file):
-        print(f"{m}[-] {w}Passwd file '{passwd_file}' not found.{r}")
-        continue
-    break
-    
-# Enter the path to the Shadow file
-while True:
-    shadow_file = input(f"[»] Enter the path to the Shadow file: ")
-    if os.path.isfile(shadow_file):
-        print(f"{m}[-] {w}Shadow file '{shadow_file}' not found.{r}")
-        continue
-    break
-    
-output_file = "hash.txt"
-
 passwd_dict = {}
 shadow_dict = {}
 
@@ -57,6 +39,22 @@ print(f"""
 {b}        https://github.com/bgropay/crypter        {r}
 """)
 
+# Enter the path to  the Passwd file
+while True:
+    passwd_file = input(f"{c}[»] {w}Enter the path to the Passwd file: ")
+    if not os.path.isfile(passwd_file):
+        print(f"{m}[-] {w}Passwd file '{passwd_file}' not found.{r}")
+        continue
+    break
+    
+# Enter the path to the Shadow file
+while True:
+    shadow_file = input(f"{c}[»] {w}Enter the path to the Shadow file: ")
+    if os.path.isfile(shadow_file):
+        print(f"{m}[-] {w}Shadow file '{shadow_file}' not found.{r}")
+        continue
+    break
+
 while True:
     input_wordlist = input(f"{c}[»] {w}Enter the path to the Wordlist file: ")
 
@@ -64,6 +62,8 @@ while True:
         print(f"{m}[-] {w}Wordlist file '{input_wordlist}' not found.{r}")
         continue
     break
+
+output_file = "hash.txt"
 
 # Read /etc/passwd file
 with open(passwd_file, 'r') as passwd:
