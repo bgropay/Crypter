@@ -33,7 +33,7 @@ while True:
             continue
         break
     except KeyboardInterrupt:
-        print(f"\n{m}[-] {w} Berhenti...{r}")
+        print(f"\n{m}[-] {w}Berhenti...{r}")
         exit(1)
     
 # Enter the path to the Shadow file
@@ -46,7 +46,7 @@ while True:
             continue
         break
     except KeyboardInterrupt:
-        print(f"\n{m}[-] {w} Keluar...{r}")
+        print(f"\n{m}[-] {w}Berhenti...{r}")
         exit(1)
 
 # Enter the path to the Wordlist file
@@ -59,7 +59,7 @@ while True:
             continue
         break
     except KeyboardInterrupt:
-        print(f"\n{m}[-] {w} Keluar...{r}")
+        print(f"\n{m}[-] {w}Berhenti...{r}")
         exit(1)
 
 # Output file
@@ -119,7 +119,7 @@ with open(wordlist_path, "r", encoding="latin-1", errors="ignore") as wordlist_f
 for username in shadow_dict:
     hashed_password = shadow_dict[username][1]
     print(f"{g}[+] {w}Menemukan nama pengguna: {g}{shadow_dict[username][0]}{r}")
-    print(f"{b}[*] {w} Meng-crack kata sandi untuk nama pengguna: {b}{shadow_dict[username][0]}{w}...{r}")
+    print(f"{b}[*] {w}Meng-crack kata sandi untuk nama pengguna: {b}{shadow_dict[username][0]}{w}...{r}")
     password_found = False
     for password in passwords:
         password = password.strip()
@@ -131,12 +131,11 @@ for username in shadow_dict:
                 password_found = True
                 break
         except KeyboardInterrupt:
-            print(f"\n{m}[-] {w} Keluar...{r}")
+            print(f"\n{m}[-] {w}Berhenti...{r}")
             exit(1)
             
     if not password_found:
-        pass
-        # print(f"{m}[-] {w}Kata sandi tidak ditemukan untuk username: {m}{username}{r}")
+        print(f"{m}[-] {w}Kata sandi tidak ditemukan untuk nama pengguna: {m}{username}{r}")
 
 print(f"{g}\n[+] {w}Jumlah nama pengguna yang berhasil di-crack: {g}{cracked_count}{r}")
 for username, password in cracked_users:
