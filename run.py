@@ -104,39 +104,36 @@ with open(output_file, 'w') as output:
             ])
             output.write(digabungkan + '\n')
 
-cracked_count = 0
-cracked_users = []
+jumlah_yang_berhasil_di_crack = 0
+pengguna_yang_berhasil_di_crack = []
 
-# Wordlist
-wordlist_path = input_wordlist
+with open(file_wordlist, "r", encoding="latin-1", errors="ignore") as wordlist:
+    daftar_kata_sandi = wordlist.readlines()
+    jumlah_kata_sandi = len(daftar_kata_sandi)
+    print(f"{b}[*] {w}Jumlah kata sandi dalam file Wordlist: {b}{daftar_kata_sandi}{r}")
 
-with open(wordlist_path, "r", encoding="latin-1", errors="ignore") as wordlist_file:
-    passwords = wordlist_file.readlines()
-    password_count = len(passwords)
-    print(f"{b}[*] {w}Jumlah kata sandi dalam file Wordlist: {b}{password_count}{r}")
-
-for username in shadow_dict:
-    hashed_password = shadow_dict[username][1]
-    print(f"{g}[+] {w}Menemukan nama pengguna: {g}{shadow_dict[username][0]}{r}")
-    print(f"{b}[*] {w}Meng-crack kata sandi untuk nama pengguna: {b}{shadow_dict[username][0]}{w}...{r}")
-    password_found = False
-    for password in passwords:
-        password = password.strip()
+for nama_pengguna in dict_shadow:
+    kata_sandi_hash = dict_shadow[nama_pengguna][1]
+    print(f"{g}[+] {w}Menemukan nama pengguna: {g}{dict_shadow[nama_pengguna][0]}{r}")
+    print(f"{b}[*] {w}Meng-crack kata sandi untuk nama pengguna: {b}{dict_shadow[nama_pengguna][0]}{w}...{r}")
+    kata_sandi_ditemukan = False
+    for kata_sandi in daftar_kata_sandi:
+        kata_sandi = kata_sandi.strip()
         try:
             # Crack Kata Sandi Linux dengan Crypt
-            if crypt.crypt(password, hashed_password) == hashed_password:
-                print(f"{g}[+] {w}Kata sandi berhasil di-crack untuk nama pengguna: {g}{username}{w}, kata sandinya adalah: {g}{password}{r}")
-                cracked_users.append((username, password))
-                cracked_count += 1
-                password_found = True
+            if crypt.crypt(kata_sandi, kata_sandi_hash) == kata_sandi_hash:
+                print(f"{g}[+] {w}Kata sandi berhasil di-crack untuk nama pengguna: {g}{nama_pengguna}{w}, kata sandinya adalah: {g}{kata_sandi}{r}")
+                pengguna_yang_berhasil_di_crack.append((nama_pengguna, kata_sandi))
+                jumlah_yang_berhasil_di_crack += 1
+                kata_sandi_ditemukan = True
                 break
         except KeyboardInterrupt:
             print(f"\n{m}[-] {w}Berhenti...{r}")
             exit(1)
             
-    if not password_found:
-        print(f"{m}[-] {w}Kata sandi gagal di-crack untuk nama pengguna: {m}{username}{r}")
+    if not kata_sandi_ditemukan:
+        print(f"{m}[-] {w}Kata sandi gagal di-crack untuk nama pengguna: {m}{nama_pengguna}{r}")
 
-print(f"{g}\n[+] {w}Jumlah nama pengguna yang berhasil di-crack: {g}{cracked_count}{r}")
-for username, password in cracked_users:
-    print(f"{g}[+] {w}Nama pengguna: {g}{username}{w}, kata sandi: {g}{password}{r}")
+print(f"{g}\n[+] {w}Jumlah nama pengguna yang berhasil di-crack: {g}{jumlah_yang_berhasil_di_crack}{r}")
+for nama_pengguna, kata_sandi in pengguna_yang_berhasil_di_crack:
+    print(f"{g}[+] {w}Nama pengguna: {g}{nama_pengguna}{w}, kata sandi: {g}{kata_sandi}{r}")
