@@ -127,19 +127,19 @@ wordlist_path = input_wordlist
 with open(wordlist_path, "r", encoding="latin-1", errors="ignore") as wordlist_file:
     passwords = wordlist_file.readlines()
     password_count = len(passwords)
-    print(f"{b}[*] {w}Number of passwords in the wordlist file '{wordlist_path}': {password_count}{r}")
+    print(f"{b}[*] {w}Number of passwords in the wordlist file '{password_count}'.")
 
 # Crack Linux Password with Crypt
 for username in shadow_dict:
     hashed_password = shadow_dict[username][1]
-    print(f"{g}[+] {w}Found username: {shadow_dict[username][0]}{r}")
-    print(f"{b}[*] {w}Cracking the password for username: {shadow_dict[username][0]}...{r}")
+    print(f"{g}[+] {w}Found username '{shadow_dict[username][0]}'{r}")
+    print(f"{b}[*] {w}Cracking the password for username '{shadow_dict[username][0]}'...{r}")
     password_found = False
     for password in passwords:
         password = password.strip()
         try:
             if crypt.crypt(password, hashed_password) == hashed_password:
-                print(f"{g}[+] {w}Password found for username: {username}, Password is: {password}{r}")
+                print(f"{g}[+] {w}Password found for username '{username}', Password is '{password}'{r}")
                 cracked_users.append((username, password))
                 cracked_count += 1
                 password_found = True
@@ -149,8 +149,8 @@ for username in shadow_dict:
             exit(1)
             
     if not password_found:
-        print(f"{m}[-] {w}Password not found for username: {username}{r}")
+        print(f"{m}[-] {w}Password not found for username '{username}'{r}")
 
-print(f"{g}\n[+] {w}Number of usernames successfully cracked: {cracked_count}{r}")
+print(f"{g}\n[+] {w}Number of usernames successfully cracked '{cracked_count}'{r}")
 for username, password in cracked_users:
-    print(f"{g}[+] {w}Username: {username}, Password: {password}{r}")
+    print(f"{g}[+] {w}Username '{username}', Password: '{password}'{r}")
