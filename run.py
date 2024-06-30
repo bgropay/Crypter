@@ -32,6 +32,7 @@ print(f"""
 {m}| |  _ | ,  /   `\ /'  | ,__/' | |  |  _)_ | ,  / {r}
 {m}| (_( )| |\ \    | |   | |     | |  | (_( )| |\ \ {r}
 {m}(____/'(_) (_)   (_)   (_)     (_)  (____/'(_) (_){r}
+
 {w}         Crack Linux Password with Python         {r}
 {b}        https://github.com/bgropay/crypter        {r}
 """)
