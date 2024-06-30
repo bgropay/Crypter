@@ -118,14 +118,14 @@ with open(wordlist_path, "r", encoding="latin-1", errors="ignore") as wordlist_f
 # Crack Linux Password with Crypt
 for username in shadow_dict:
     hashed_password = shadow_dict[username][1]
-    print(f"{g}[+] {w}Menemukan username: {g}{shadow_dict[username][0]}{r}")
-    print(f"{b}[*] {w}Memecahkan kata sandi untuk username: {b}{shadow_dict[username][0]}{w}...{r}")
+    print(f"{g}[+] {w}Menemukan nama pengguna: {g}{shadow_dict[username][0]}{r}")
+    print(f"{b}[*] {w} Meng-crack kata sandi untuk nama pengguna: {b}{shadow_dict[username][0]}{w}...{r}")
     password_found = False
     for password in passwords:
         password = password.strip()
         try:
             if crypt.crypt(password, hashed_password) == hashed_password:
-                print(f"{g}[+] {w} Kata sandi berhasil ditemukan untuk username: {g}{username}{w}, kata sandinya adalah: {g}{password}{r}")
+                print(f"{g}[+] {w}Kata sandi berhasil di-crack untuk nama pengguna: {g}{username}{w}, kata sandinya adalah: {g}{password}{r}")
                 cracked_users.append((username, password))
                 cracked_count += 1
                 password_found = True
@@ -135,8 +135,9 @@ for username in shadow_dict:
             exit(1)
             
     if not password_found:
-        print(f"{m}[-] {w}Kata sandi tidak ditemukan untuk username: {m}{username}{r}")
+        pass
+        # print(f"{m}[-] {w}Kata sandi tidak ditemukan untuk username: {m}{username}{r}")
 
-print(f"{g}\n[+] {w}Jumlah username yang berhasil di-crack: {g}{cracked_count}{r}")
+print(f"{g}\n[+] {w}Jumlah nama pengguna yang berhasil di-crack: {g}{cracked_count}{r}")
 for username, password in cracked_users:
-    print(f"{g}[+] {w}Username: {g}{username}{w}, kata sandi: {g}{password}{r}")
+    print(f"{g}[+] {w}Nama pengguna: {g}{username}{w}, kata sandi: {g}{password}{r}")
