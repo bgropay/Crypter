@@ -40,7 +40,7 @@ print(f"""
 # Enter the path to  the Passwd file
 while True:
     try:
-        passwd_file = input(f"{c}[»] {w}Enter the path to the Passwd file: ")
+        passwd_file = input(f"{c}[»] {w}Enter the path to the Passwd file [eg: /etc/passwd]: ")
         # condition if the Passwd file is not found 
         if not os.path.isfile(passwd_file):
             print(f"{m}[-] {w}Passwd file not found.{r}")
@@ -53,7 +53,7 @@ while True:
 # Enter the path to the Shadow file
 while True:
     try:
-        shadow_file = input(f"{c}[»] {w}Enter the path to the Shadow file: ")
+        shadow_file = input(f"{c}[»] {w}Enter the path to the Shadow file [eg: /etc/shadow]: ")
         # Condition if the Shadow file is not found 
         if not os.path.isfile(shadow_file):
             print(f"{m}[-] {w}Shadow file not found.{r}")
