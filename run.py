@@ -20,8 +20,8 @@ r = colorama.Fore.RESET         # Reset
 
 # Periksa apakah sistem operasinya Linux
 if platform.system() != 'Linux':
-    print("This script is designed to run only on Linux systems.")
-    sys.exit(1)
+    print(f"{m}[-] {p}Program ini dirancang untuk dijalankan hanya pada sistem operasi Linux.{r}")
+    exit(1)
 
 # Masukkan jalur ke file Passwd
 while True:
