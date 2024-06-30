@@ -26,40 +26,40 @@ if platform.system() != 'Linux':
 # Enter the path to  the Passwd file
 while True:
     try:
-        passwd_file = input(f"{c}[»] {w}Enter the path to the Passwd file (eg: /etc/passwd): ")
+        passwd_file = input(f"{c}[»] {w} Masukkan jalur ke file Passwd (contoh: /etc/passwd): ")
         # condition if the Passwd file is not found 
         if not os.path.isfile(passwd_file):
-            print(f"{m}[-] {w}Passwd file not found.{r}")
+            print(f"{m}[-] {w}File Passwd '{passwd_file}' tidak ditemukan.{r}")
             continue
         break
     except KeyboardInterrupt:
-        print(f"\n{m}[-] {w}Quitting...{r}")
+        print(f"\n{m}[-] {w} Berhenti...{r}")
         exit(1)
     
 # Enter the path to the Shadow file
 while True:
     try:
-        shadow_file = input(f"{c}[»] {w}Enter the path to the Shadow file (eg: /etc/shadow): ")
+        shadow_file = input(f"{c}[»] {w} Masukkan jalur ke file Shadow (contoh: /etc/shadow): ")
         # Condition if the Shadow file is not found 
         if not os.path.isfile(shadow_file):
-            print(f"{m}[-] {w}Shadow file not found.{r}")
+            print(f"{m}[-] {w}File Shadow '{shadow_file}' tidak ditemukan.{r}")
             continue
         break
     except KeyboardInterrupt:
-        print(f"\n{m}[-] {w}Quitting...{r}")
+        print(f"\n{m}[-] {w} Keluar...{r}")
         exit(1)
 
 # Enter the path to the Wordlist file
 while True:
     try:
-        input_wordlist = input(f"{c}[»] {w}Enter the path to the Wordlist file: ")
+        input_wordlist = input(f"{c}[»] {w} Masukkan jalur ke file Wordlist: ")
         # Condition if the wordlist file is not found 
         if not os.path.isfile(input_wordlist):
-            print(f"{m}[-] {w}Wordlist file not found.{r}")
+            print(f"{m}[-] {w}File wordlist '{wordlist_file}' tidak ditemukan.{r}")
             continue
         break
     except KeyboardInterrupt:
-        print(f"\n{m}[-] {w}Quitting...{r}")
+        print(f"\n{m}[-] {w} Keluar...{r}")
         exit(1)
 
 # Output file
