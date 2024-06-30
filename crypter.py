@@ -29,13 +29,13 @@ def check_file_exists(filepath, filetype):
         print(f"{m}[-] {w}{filetype} file '{filepath}' not found.{r}")
         sys.exit(1)
 
-def get_input_wordlist():
+def get_input_filepath(prompt, filetype):
     while True:
-        input_wordlist = input(f"{c}[»] {w}Enter the path to the Wordlist file: ")
-        if not os.path.isfile(input_wordlist):
-            print(f"{m}[-] {w}Wordlist file '{input_wordlist}' not found.{r}")
+        input_filepath = input(f"{c}[»] {w}{prompt}: ")
+        if not os.path.isfile(input_filepath):
+            print(f"{m}[-] {w}{filetype} file '{input_filepath}' not found.{r}")
             continue
-        return input_wordlist
+        return input_filepath
 
 def read_passwd_file(passwd_file):
     passwd_dict = {}
@@ -109,13 +109,6 @@ def crack_passwords(shadow_dict, wordlist_path):
 def main():
     check_os()
 
-    passwd_file = "/etc/passwd"
-    shadow_file = "/etc/shadow"
-    output_file = "hash.txt"
-
-    check_file_exists(passwd_file, "Passwd")
-    check_file_exists(shadow_file, "Shadow")
-
     os.system("clear")
 
     print(f"""
@@ -129,10 +122,13 @@ def main():
     {b}        https://github.com/bgropay/crypter        {r}
     """)
 
-    input_wordlist = get_input_wordlist()
+    passwd_file = get_input_filepath("Enter the path to the passwd file", "Passwd")
+    shadow_file = get_input_filepath("Enter the path to the shadow file", "Shadow")
+    input_wordlist = get_input_filepath("Enter the path to the Wordlist file", "Wordlist")
+    
     passwd_dict = read_passwd_file(passwd_file)
     shadow_dict = read_shadow_file(shadow_file, passwd_dict)
-    combine_info(passwd_dict, shadow_dict, output_file)
+    combine_info(passwd_dict, shadow_dict, "hash.txt")
     crack_passwords(shadow_dict, input_wordlist)
 
 if __name__ == "__main__":
