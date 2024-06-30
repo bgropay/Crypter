@@ -68,7 +68,7 @@ output_file = "hash.txt"
 passwd_dict = {}
 shadow_dict = {}
 
-# Read /etc/passwd file
+# Baca file /etc/passwd
 with open(passwd_file, 'r') as passwd:
     for line in passwd:
         parts = line.strip().split(':')
@@ -78,7 +78,7 @@ with open(passwd_file, 'r') as passwd:
             if 'user' in gecos.lower():  # Check for 'user' in GECOS
                 passwd_dict[username] = parts
 
-# Read /etc/shadow file
+# Baca file /etc/shadow 
 with open(shadow_file, 'r') as shadow:
     for line in shadow:
         parts = line.strip().split(':')
@@ -87,15 +87,15 @@ with open(shadow_file, 'r') as shadow:
             if username in passwd_dict:
                 shadow_dict[username] = parts
 
-# Combine information for users present in both files
+# Gabungkan informasi untuk pengguna yang ada di kedua file
 with open(output_file, 'w') as output:
     for username in passwd_dict:
         if username in shadow_dict:
             passwd_parts = passwd_dict[username]
             shadow_parts = shadow_dict[username]
             combined = ':'.join([
-                passwd_parts[0],  # username
-                shadow_parts[1],  # hashed password
+                passwd_parts[0],  # Nama pengguna 
+                shadow_parts[1],  # Kata sandi Hash
                 passwd_parts[2],  # UID
                 passwd_parts[3],  # GID
                 passwd_parts[4],  # GECOS
@@ -115,7 +115,6 @@ with open(wordlist_path, "r", encoding="latin-1", errors="ignore") as wordlist_f
     password_count = len(passwords)
     print(f"{b}[*] {w}Jumlah kata sandi dalam file Wordlist: {b}{password_count}{r}")
 
-# Crack Linux Password with Crypt
 for username in shadow_dict:
     hashed_password = shadow_dict[username][1]
     print(f"{g}[+] {w}Menemukan nama pengguna: {g}{shadow_dict[username][0]}{r}")
@@ -124,6 +123,7 @@ for username in shadow_dict:
     for password in passwords:
         password = password.strip()
         try:
+            # Crack Kata Sandi Linux dengan Crypt
             if crypt.crypt(password, hashed_password) == hashed_password:
                 print(f"{g}[+] {w}Kata sandi berhasil di-crack untuk nama pengguna: {g}{username}{w}, kata sandinya adalah: {g}{password}{r}")
                 cracked_users.append((username, password))
