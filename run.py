@@ -26,10 +26,10 @@ if platform.system() != 'Linux':
 # Masukkan jalur ke file Passwd
 while True:
     try:
-        passwd_file = input(f"{c}[»] {p}Masukkan jalur ke file Passwd (contoh: /etc/passwd): ")
+        file_passwd = input(f"{c}[»] {p}Masukkan jalur ke file Passwd (contoh: /etc/passwd): ")
         # kondisi jika file Passwd tidak ditemukan
-        if not os.path.isfile(passwd_file):
-            print(f"{m}[-] {p}File Passwd '{passwd_file}' tidak ditemukan.{r}")
+        if not os.path.isfile(file_passwd):
+            print(f"{m}[-] {p}File Passwd '{file_passwd}' tidak ditemukan.{r}")
             continue
         break
     except KeyboardInterrupt:
@@ -39,10 +39,10 @@ while True:
 # Masukkan jalur ke file Shadow 
 while True:
     try:
-        shadow_file = input(f"{c}[»] {p}Masukkan jalur ke file Shadow (contoh: /etc/shadow): ")
+        file_shadow = input(f"{c}[»] {p}Masukkan jalur ke file Shadow (contoh: /etc/shadow): ")
         # kondisi jika file Shadow tidak ditemukan 
-        if not os.path.isfile(shadow_file):
-            print(f"{m}[-] {p}File Shadow '{shadow_file}' tidak ditemukan.{r}")
+        if not os.path.isfile(file_shadow):
+            print(f"{m}[-] {p}File Shadow '{file_shadow}' tidak ditemukan.{r}")
             continue
         break
     except KeyboardInterrupt:
@@ -52,10 +52,10 @@ while True:
 # Masukkan jalur ke file Wordlist 
 while True:
     try:
-        input_wordlist = input(f"{c}[»] {p}Masukkan jalur ke file Wordlist: ")
+        file_wordlist = input(f"{c}[»] {p}Masukkan jalur ke file Wordlist: ")
         # kondisi jika file Wordlist tidak ditemukan
-        if not os.path.isfile(input_wordlist):
-            print(f"{m}[-] {p}File wordlist '{wordlist_file}' tidak ditemukan.{r}")
+        if not os.path.isfile(file_wordlist):
+            print(f"{m}[-] {p}File wordlist '{file_wordlist}' tidak ditemukan.{r}")
             continue
         break
     except KeyboardInterrupt:
@@ -69,14 +69,14 @@ passwd_dict = {}
 shadow_dict = {}
 
 # Baca file /etc/passwd
-with open(passwd_file, 'r') as passwd:
-    for line in passwd:
-        parts = line.strip().split(':')
-        if len(parts) > 1:
-            username = parts[0]
-            gecos = parts[4]  # Extract GECOS field
+with open(file_passwd, 'r') as passwd:
+    for baris in passwd:
+        bagian = baris.strip().split(':')
+        if len(bagian) > 1:
+            nama_pengguna = bagian[0]
+            gecos = bagian[4]  # Extract GECOS field
             if 'user' in gecos.lower():  # Check for 'user' in GECOS
-                passwd_dict[username] = parts
+                passwd_dict[nama_pengguna] = bagian
 
 # Baca file /etc/shadow 
 with open(shadow_file, 'r') as shadow:
